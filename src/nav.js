@@ -18,7 +18,7 @@ export default function Nav({ handlePath, setLogin, login }) {
             <nav>
                 <a href="#" onClick={() => handlePath('shop')}>Shop</a>
                 {
-                    login ? <a href="#" onClick={() => handlePath('product')}>Products</a> : (
+                    login ? <a href="#" onClick={() => handlePath('products')}>Products</a> : (
                         <>
                             <a href="#" onClick={() => handlePath('about')}>About</a>
                             <a href="#" onClick={() => handlePath('connectme')}>Connect Me</a>

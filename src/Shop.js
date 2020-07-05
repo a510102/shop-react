@@ -26,10 +26,10 @@ export default function Shop() {
     if (!products) {
         return <div> error 404</div>
     }
-
+    const filterProducts = products.filter(data => data.is_enabled === 1);
     return (
         <ul className="productlist">{
-            products.filter(data => data.is_enabled === 1).map(data => <Product data={data} key={data.id} />)
+            filterProducts.length > 0 ? filterProducts.map(data => <Product data={data} key={data.id} />) : (<div>現在還沒有商品喲~</div>)
         }</ul>
     )
 }
