@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Product from './Product';
+import ShopProduct from './ShopProduct';
 
 
 
@@ -29,7 +29,8 @@ export default function Shop() {
     const filterProducts = products.filter(data => data.is_enabled === 1);
     return (
         <ul className="productlist">{
-            filterProducts.length > 0 ? filterProducts.map(data => <Product data={data} key={data.id} />) : (<div>現在還沒有商品喲~</div>)
+            filterProducts.length > 0 ? filterProducts.map(data => <ShopProduct data={data} key={data.id} />) : (
+                <div>現在還沒有商品喲~</div>)
         }</ul>
     )
 }

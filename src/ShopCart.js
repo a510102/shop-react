@@ -48,8 +48,7 @@ export default function ShopCart() {
         } else {
             console.log(result.message);
         }
-        setCoupon('');
-    }
+    };
 
     return (
         <div>
@@ -59,19 +58,25 @@ export default function ShopCart() {
                     <ul>
                         {
                             !carts.carts.length ? 'nothings' : (
-                                carts.carts.map((cart, i) => (
-                                    <li key={i} style={{ display: "flex" }}>
-                                        <p>{cart.product.title} {cart.qty} {cart.product.unit} {cart.total} 元</p>
-                                        <button onClick={() => handleDeleCart(cart.id)}>刪除</button>
+                                <>
+                                    {carts.carts.map((cart, i) => {
+                                        return (
+                                            <li key={i} style={{ display: "flex" }}>
+                                                <p>{cart.product.title} {cart.qty} {cart.product.unit} {cart.total} 元</p>
+                                                <button onClick={() => handleDeleCart(cart.id)}>刪除</button>
+                                            </li>
+                                        )
+                                    })}
+                                    <li>總共: {carts.final_total} 元</li>
+                                    <li>
+                                        <input onChange={handleChange} value={coupon} />
+                                        <button onClick={() => handleCoupon(coupon)}>優惠</button>
                                     </li>
-                                ))
+                                    <button >結帳</button>
+                                </>
                             )
                         }
-                        <li>
-                            <input onChange={handleChange} value={coupon} />
-                            <button onClick={() => handleCoupon(coupon)}>優惠</button>
-                        </li>
-                        {!carts.carts.length ? null : (<li>總共: {carts.final_total} 元</li>)}
+                        <button onClick={() => setOpen(false)}>返回</button>
                     </ul>) : null
             }
         </div >
