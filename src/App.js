@@ -1,6 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import { produce } from "immer";
 import Nav from './Nav';
+import ErrorBoundary from './ErrorBoundary';
 import "./App.css";
 import { ShopCartContext } from './ShopCartContext';
 
@@ -15,8 +16,7 @@ const Shop = React.lazy(() => import('./Shop'));
 const ShopCart = React.lazy(() => import('./ShopCart'));
 const CouponsList = React.lazy(() => import('./CouponsList'));
 const OrderList = React.lazy(() => import('./OrderList'));
-
-
+const CheckOut = React.lazy(() => import('./CheckOut'));
 
 function useImmerReducer(reducer, initialState) {
   return React.useReducer(produce(reducer), initialState);
@@ -52,25 +52,33 @@ export default function App() {
         setLogin={setLogin}
         login={login} />
       <Suspense fallback={<div> Loading ...</div>}>
-        {
-          login && path === "products" ? <Products /> : (
-            login && path === "orderlist" ? <OrderList /> : (
-              login && path === "coupon" ? <CouponsList /> : (
-                path === "shop" ? (
-                  <ShopCartContext.Provider value={{ carts, dispatch }}>
-                    <ShopCart />
-                    <Shop />
-                  </ShopCartContext.Provider>) : (
-                    !login && path === "login" ? <Login handlePath={handlePath} setLogin={setLogin} /> : (
-                      !login && path === "about" ? <About /> : (
-                        !login && path === "connectme" ? <ConnectMe /> : <Home />
-                      )
+        <ErrorBoundary>
+          {
+            login && path === "products" ? <Products /> : (
+              login && path === "orderlist" ? <OrderList /> : (
+                login && path === "coupon" ? <CouponsList /> : (
+                  path === "shop" ? (
+                    <ShopCartContext.Provider value={{ carts, dispatch }}>
+                      <ShopCart setPath={setPath} />
+                      <Shop />
+                    </ShopCartContext.Provider>) : (
+                      path === "checkout" ? (
+                        <ShopCartContext.Provider value={{ carts }}>
+                          <CheckOut setPath={setPath} />
+                        </ShopCartContext.Provider>)
+                        : (
+                          !login && path === "login" ? <Login handlePath={handlePath} setLogin={setLogin} /> : (
+                            !login && path === "about" ? <About /> : (
+                              !login && path === "connectme" ? <ConnectMe /> : <Home />
+                            )
+                          )
+                        )
                     )
-                  )
+                )
               )
             )
-          )
-        }
+          }
+        </ErrorBoundary>
       </Suspense>
     </div>
   );
