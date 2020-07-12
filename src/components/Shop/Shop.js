@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ShopProduct from './ShopProduct';
+import Loading from '../Loading/Loading';
+
 
 
 
@@ -20,7 +22,7 @@ export default function Shop() {
     }
 
     if (loading) {
-        return <div>Loading ....</div>
+        return <Loading />
     }
 
     if (!products) {

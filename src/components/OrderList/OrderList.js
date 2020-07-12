@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EditOrderList from './EditOrderList';
 import Order from './Order';
+import Loading from '../Loading/Loading'
 
 
 export default function OrderList() {
@@ -10,10 +11,6 @@ export default function OrderList() {
   const [openDetail, setOpenDetail] = useState(false);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, [])
 
   const fetchData = async () => {
     const Url = 'https://vue-course-api.hexschool.io/api/jay/admin/orders';
@@ -26,6 +23,11 @@ export default function OrderList() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showDetail = num => {
     if (!openDetail && id.length === 0) {
@@ -97,7 +99,7 @@ export default function OrderList() {
   }
 
   if (loading) {
-    return <div>Loading ...</div>
+    return <Loading />
   }
 
   return (

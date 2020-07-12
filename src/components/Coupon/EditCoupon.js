@@ -1,5 +1,5 @@
 import React from 'react'
-import { changeToDate } from './setTime';
+import { changeToDate } from '../../js/setTime';
 
 export default function EditCoupon({ open, setOpen, coupon, handleChange, updateCoupon, addCoupon, handleCancel }) {
   return (

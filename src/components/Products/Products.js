@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import EditProduct from './EditProduct';
 import BackProduct from './BackProduct';
+import Loading from '../Loading/Loading';
 
 export default function Products() {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [product, setProduct] = useState({})
-  useEffect(() => {
-    fetchProducts();
-  }, [])
 
   const fetchProducts = async () => {
     const Url = 'https://vue-course-api.hexschool.io/api/jay/products';
@@ -18,6 +16,11 @@ export default function Products() {
     setProducts(data.products)
     setLoading(false);
   }
+
+  useEffect(() => {
+    fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const updateData = async (data, id, type) => {
     let Url;
@@ -83,7 +86,7 @@ export default function Products() {
   }
 
   if (loading) {
-    return <div>Loading</div>
+    return <Loading />
   }
 
   return (

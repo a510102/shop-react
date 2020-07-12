@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
-export default function Login({ handlePath, setLogin }) {
-
+export default function Login({ setLogin }) {
+  const history = useHistory();
   const [user, setUser] = useState({
     username: '',
     password: ''
@@ -29,7 +30,7 @@ export default function Login({ handlePath, setLogin }) {
     const result = await response.json();
     if (result.success) {
       setLogin(true);
-      handlePath('products');
+      history.push('/products');
     }
   }
 
@@ -48,7 +49,7 @@ export default function Login({ handlePath, setLogin }) {
         onChange={handleChange}
         value={user.password} />
       <button type='submit'>Submit</button>
-      <button onClick={() => handlePath("/")}>Back</button>
+      <button>Back</button>
     </form>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { ShopCartContext } from './ShopCartContext';
+import { ShopCartContext } from './Shop/ShopCartContext';
 
 
 export default function CheckOut({ setPath }) {

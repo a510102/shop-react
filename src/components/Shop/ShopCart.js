@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ShopCartContext } from './ShopCartContext';
+import { useHistory } from 'react-router-dom'
 
 
-export default function ShopCart({ setPath }) {
+export default function ShopCart() {
     const { carts, dispatch } = useContext(ShopCartContext);
     const [coupon, setCoupon] = useState('');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
+    const history = useHistory();
 
     const fetchData = async () => {
         const Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
@@ -20,6 +22,7 @@ export default function ShopCart({ setPath }) {
 
     useEffect(() => {
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleClick = () => {
@@ -53,7 +56,7 @@ export default function ShopCart({ setPath }) {
     };
 
     const handleCheckOut = () => {
-        setPath('checkout');
+        history.push('/checkout');
     }
 
     return (

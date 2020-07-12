@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import EditCoupon from './EditCoupon';
 import Coupon from './Coupon';
+import Loading from '../Loading/Loading';
+
 
 export default function CouponsList() {
   const [coupons, setCoupons] = useState(null);
   const [coupon, setCoupon] = useState({});
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const fetchData = async () => {
     const Url = 'https://vue-course-api.hexschool.io/api/jay/admin/coupons';
@@ -23,6 +21,11 @@ export default function CouponsList() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const updateDate = async (data, id, type) => {
     const Url = id ? `https://vue-course-api.hexschool.io/api/jay/admin/coupon/${id}` : 'https://vue-course-api.hexschool.io/api/jay/admin/coupon';
@@ -81,7 +84,7 @@ export default function CouponsList() {
   }
 
   if (loading) {
-    return <div>Loading...</div>
+    return <Loading />
   }
 
   return (

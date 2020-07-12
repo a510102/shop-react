@@ -2,17 +2,11 @@ export const changeToDate = (number, isTrue = false) => {
   let dateTime = new Date();
   dateTime.setTime(number * 1000);
   const year = dateTime.getFullYear();
-  let month = dateTime.getMonth() + 1;
-  let day = dateTime.getDate();
-  const hour = dateTime.getHours();
-  const min = dateTime.getMinutes();
+  const month = addZero(dateTime.getMonth() + 1);
+  const day = addZero(dateTime.getDate());
+  const hour = addZero(dateTime.getHours());
+  const min = addZero(dateTime.getMinutes());
 
-  if (month < 10) {
-    month = `0${month}`;
-  }
-  if (day < 10) {
-    day = `0${day}`;
-  }
   let date;
   if (isTrue) {
     date = `${year}-${month}-${day}- ${hour}: ${min}`;
@@ -20,4 +14,11 @@ export const changeToDate = (number, isTrue = false) => {
     date = `${year}-${month}-${day}`;
   }
   return date;
+}
+
+function addZero(number) {
+  if (number < 10) {
+    number = `0${number}`
+  }
+  return number;
 }

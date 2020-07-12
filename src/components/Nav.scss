@@ -1,0 +1,27 @@
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  @include flexCenter();
+  margin: 0 auto;
+  ul {
+    margin-left: 2em;
+    list-style: none;
+    @include flexCenter();
+    li {
+      margin-left: 2em;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  a {
+    margin-left: auto;
+  }
+}
