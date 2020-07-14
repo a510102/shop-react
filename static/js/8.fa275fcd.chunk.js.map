@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Home.js"],"names":["Home"],"mappings":"+GAAA,mEAEe,SAASA,IACtB,OACE,6BACE,oCACA","file":"static/js/8.fa275fcd.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default function Home() {\r\n  return (\r\n    <div>\r\n      <h1>Home</h1>\r\n      <p>content...</p>\r\n    </div>\r\n  )\r\n}"],"sourceRoot":""}
