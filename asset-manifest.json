@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/shop-react/static/css/main.c681e556.chunk.css",
-    "main.js": "/shop-react/static/js/main.6bf43e52.chunk.js",
-    "main.js.map": "/shop-react/static/js/main.6bf43e52.chunk.js.map",
+    "main.js": "/shop-react/static/js/main.06224502.chunk.js",
+    "main.js.map": "/shop-react/static/js/main.06224502.chunk.js.map",
     "runtime-main.js": "/shop-react/static/js/runtime-main.a6cc1db5.js",
     "runtime-main.js.map": "/shop-react/static/js/runtime-main.a6cc1db5.js.map",
     "static/js/2.60fa1f75.chunk.js": "/shop-react/static/js/2.60fa1f75.chunk.js",
@@ -30,7 +30,7 @@
     "static/js/12.223a9af1.chunk.js": "/shop-react/static/js/12.223a9af1.chunk.js",
     "static/js/12.223a9af1.chunk.js.map": "/shop-react/static/js/12.223a9af1.chunk.js.map",
     "index.html": "/shop-react/index.html",
-    "precache-manifest.f1517bdd9ed6ee789b16d71024ab53e7.js": "/shop-react/precache-manifest.f1517bdd9ed6ee789b16d71024ab53e7.js",
+    "precache-manifest.01a86a9b7e253ca1c95961089b70a799.js": "/shop-react/precache-manifest.01a86a9b7e253ca1c95961089b70a799.js",
     "service-worker.js": "/shop-react/service-worker.js",
     "static/css/3.161ddbc2.chunk.css.map": "/shop-react/static/css/3.161ddbc2.chunk.css.map",
     "static/css/4.3e3c9814.chunk.css.map": "/shop-react/static/css/4.3e3c9814.chunk.css.map",
@@ -41,6 +41,6 @@
     "static/js/runtime-main.a6cc1db5.js",
     "static/js/2.60fa1f75.chunk.js",
     "static/css/main.c681e556.chunk.css",
-    "static/js/main.6bf43e52.chunk.js"
+    "static/js/main.06224502.chunk.js"
   ]
 }
