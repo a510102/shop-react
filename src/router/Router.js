@@ -22,7 +22,17 @@ export default function Router({ carts, dispatch, setAuth, auth }) {
     <ErrorBoundary>
       <Suspense fallback={<Loading />}>
         <Switch>
-          <Redirect exact from='/' to='/home' />
+          <Route
+            exact
+            path="/shop-react"
+            render={() => {
+              return (
+                auth ?
+                  <Redirect to="/home" /> :
+                  <Redirect to="/products" />
+              )
+            }}
+          />
           <Route exact path='/home' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/login'>
