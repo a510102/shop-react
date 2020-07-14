@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import Loading from './Loading/Loading';
 
-export default function Login({ setLogin }) {
+export default function Login({ setAuth }) {
   const history = useHistory();
   const [user, setUser] = useState({
     username: '',
     password: ''
   });
+
+  const [loading, setLoading] = useState(false);
+
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -20,6 +24,7 @@ export default function Login({ setLogin }) {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const Url = 'https://vue-course-api.hexschool.io/admin/signin';
     const response = await fetch(Url, {
       method: "POST",
@@ -29,10 +34,16 @@ export default function Login({ setLogin }) {
     });
     const result = await response.json();
     if (result.success) {
-      setLogin(true);
+      setLoading(false);
+      setAuth(true);
       history.push('/products');
     }
   }
+
+  if (loading) {
+    return <Loading />
+  }
+
 
   return (
     <form onSubmit={handleLogin}>

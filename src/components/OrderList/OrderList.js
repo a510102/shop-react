@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useAlert } from 'react-alert';
+
 import EditOrderList from './EditOrderList';
 import Order from './Order';
 import Loading from '../Loading/Loading'
 
 
 export default function OrderList() {
+  const alert = useAlert();
+
   const [orders, setOrders] = useState(null);
   const [order, setOrder] = useState(null);
   const [show, setShow] = useState(false);
@@ -88,8 +92,10 @@ export default function OrderList() {
       headers: { 'content-type': 'application/json' },
     });
     const result = await response.json();
-    if (result.success) {
+    const { success, message } = result;
+    if (success) {
       fetchData();
+      alert.success(message);
     }
   }
 

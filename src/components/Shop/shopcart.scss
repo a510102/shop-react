@@ -1,0 +1,68 @@
+@mixin btn-success {
+  color: #2cce4f;
+  border: 2px solid #2cce4f;
+  font-size: 1.2em;
+  &:hover {
+    background: #2cce4f;
+    color: #e1e1e1;
+  }
+}
+
+@mixin btn-danger {
+  color: red;
+  border-color: red;
+  &:hover {
+    color: #e1e1e1;
+    background: red;
+  }
+}
+
+// shop cart
+.shopcart {
+  margin-top: 10px;
+  width: 100%;
+  text-align: end;
+  .shopcart-itemlist {
+    margin-top: 0.5em;
+    padding: 5px;
+    width: 100%;
+    button {
+      margin-left: 10px;
+      border-radius: 5px;
+      padding: 4px;
+      font-size: 1.1em;
+    }
+    .coupon-btn {
+      color: rgb(243, 122, 16);
+      border-color: rgb(243, 122, 16);
+      &:hover {
+        color: #e1e1e1;
+        border-color: #e1e1e1;
+        background: rgb(243, 122, 16);
+      }
+    }
+    .shop-coupon {
+      margin-bottom: 10px;
+    }
+    .checkout-btn {
+      @include btn-success();
+    }
+    .close-btn {
+      @include btn-danger();
+    }
+  }
+  .shopcart-item {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+    p {
+      width: 70%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    button {
+      @include btn-danger();
+    }
+  }
+}

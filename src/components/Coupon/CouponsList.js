@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useAlert } from 'react-alert';
+
 import EditCoupon from './EditCoupon';
 import Coupon from './Coupon';
 import Loading from '../Loading/Loading';
 
 
 export default function CouponsList() {
+
+  const alert = useAlert();
   const [coupons, setCoupons] = useState(null);
   const [coupon, setCoupon] = useState({});
   const [loading, setLoading] = useState(true);
@@ -36,8 +40,16 @@ export default function CouponsList() {
       headers: { 'content-type': (type === 'PUT' || type === 'POST') && 'application/json' },
     });
     const result = await response.json();
-    if (result.success) {
+    const { success, message } = result;
+    if (success) {
       fetchData();
+      if (message) {
+        alert.success(message);
+      }
+    } else {
+      if (message) {
+        alert.error(message);
+      }
     }
   }
 

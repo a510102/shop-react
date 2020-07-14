@@ -1,8 +1,15 @@
 @import "reset";
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600&family=Merriweather:wght@300&display=swap");
+
+body {
+  background: #e1e1e1;
+}
 
 .App {
   max-width: 1400px;
-  width: 100%;
+  width: 100vw;
   height: 100vw;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Merriweather", serif;
 }

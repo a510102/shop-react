@@ -2,6 +2,11 @@ import React from 'react'
 import { changeToDate } from '../../js/setTime';
 
 export default function Coupon({ coupon, updateIsenable, openUpdateCoupon, updateDate }) {
+
+  function handleDelete() {
+    updateDate(null, coupon.id, "DELETE")
+  }
+
   return (
     <li style={{ display: 'flex', width: '50vw', justifyContent: 'space-around', alignItems: 'center' }}>
       <p>{coupon.title}</p>
@@ -13,7 +18,7 @@ export default function Coupon({ coupon, updateIsenable, openUpdateCoupon, updat
         onChange={(e) => updateIsenable(e, coupon)}
         checked={coupon.is_enabled === 1 ? true : false} />
       <button onClick={() => openUpdateCoupon(coupon)}>編輯</button>
-      <button onClick={() => updateDate(null, coupon.id, "DELETE")}>刪除</button>
+      <button onClick={handleDelete}>刪除</button>
     </li>
   )
 }

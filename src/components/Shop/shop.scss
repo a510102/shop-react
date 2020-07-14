@@ -1,0 +1,54 @@
+@mixin gridone {
+  grid-column-start: 1;
+  grid-column-end: span 4;
+}
+
+@mixin gridtwo {
+  grid-column-start: 5;
+  grid-column-end: span 4;
+}
+@mixin gridthree {
+  grid-column-start: 9;
+  grid-column-end: span 4;
+}
+
+// shop product list
+
+.productlist {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-row-gap: 10px;
+  .product {
+    padding: 5px;
+    height: 300px;
+    border: 2px solid lightgreen;
+    border-radius: 20px;
+    margin-right: 5px;
+  }
+  .none {
+    @include gridthree();
+    grid-row-start: 0;
+    grid-row-end: span 1;
+  }
+  .product:first-child {
+    @include gridone();
+  }
+  .product:nth-child(2) {
+    @include gridtwo();
+  }
+  .product:nth-child(3) {
+    @include gridthree();
+  }
+  .product:nth-child(4) {
+    @include gridone();
+  }
+  .product:nth-child(5) {
+    @include gridtwo();
+  }
+  .product:nth-child(6) {
+    @include gridthree();
+  }
+}

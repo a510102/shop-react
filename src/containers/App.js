@@ -3,8 +3,10 @@ import { produce } from "immer";
 import {
   BrowserRouter,
 } from 'react-router-dom';
-import Nav from '../components/Nav';
-import Router from '../components/Router';
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
+import Nav from '../components/Nav/Nav';
+import Router from '../router/Router';
 
 import "./App.scss";
 // code-Splitting
@@ -28,17 +30,30 @@ const cartReducer = (carts, action) => {
   }
 }
 
+const options = {
+  position: 'top center',
+  timeout: 3000,
+  offset: '30px',
+  transition: 'fade'
+}
+
 export default function App() {
   const [carts, dispatch] = useImmerReducer(cartReducer, []);
-  const [login, setLogin] = useState(false);
+  const [auth, setAuth] = useState(false);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Nav
-          setLogin={setLogin}
-          login={login} />
-        <Router carts={carts} dispatch={dispatch} login={login} setLogin={setLogin} />
+          setAuth={setAuth}
+          auth={auth} />
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Router
+            carts={carts}
+            dispatch={dispatch}
+            setAuth={setAuth}
+            auth={auth} />
+        </AlertProvider>
       </BrowserRouter>
     </div>
   );

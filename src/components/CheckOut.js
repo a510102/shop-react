@@ -1,9 +1,13 @@
 import React, { useState, useContext } from 'react'
+import { useAlert } from 'react-alert';
 import { ShopCartContext } from './Shop/ShopCartContext';
 
 
-export default function CheckOut({ setPath }) {
+export default function CheckOut() {
+  const alert = useAlert();
+
   const { carts } = useContext(ShopCartContext);
+  console.log(carts)
   const [order, setOrder] = useState({
     user: {},
     message: ''
@@ -43,16 +47,20 @@ export default function CheckOut({ setPath }) {
     } else {
       newOrder = { ...order };
     }
-    console.log(newOrder);
     const response = await fetch(Url, {
       method: 'POST',
       body: JSON.stringify({ data: { ...newOrder } }),
       headers: { 'content-type': 'application/json' }
     });
     const datas = await response.json();
-    if (datas.success) {
-      setId(datas.orderId);
+    const { success, orderId, message } = datas;
+
+    if (success) {
+      setId(orderId);
+      alert.success(message);
       setPay(true);
+    } else {
+      alert.error(message);
     }
   }
 
@@ -60,8 +68,10 @@ export default function CheckOut({ setPath }) {
     const Url = `https://vue-course-api.hexschool.io/api/jay/pay/${id}`;
     const response = await fetch(Url, { method: 'POST' });
     const datas = await response.json();
-    if (datas.success) {
-      console.log(datas.message)
+    const { success, message } = datas;
+
+    if (success) {
+      alert.show(message);
       setDone(true);
     }
   }
@@ -69,18 +79,8 @@ export default function CheckOut({ setPath }) {
   return (
     <div>
       {!done ? (<>
-        <ul>
-          <li><h3>商品 :</h3></li>
-          {carts.carts.map((cart, i) => {
-            return (
-              <li key={i} style={{ display: "flex" }}>
-                <p>{cart.product.title} {cart.qty} {cart.product.unit} {cart.total} 元</p>
-              </li>
-            )
-          })}
-          <li>總共: {carts.final_total} 元</li>
-        </ul>
         <div>
+          <h2>客戶資訊</h2>
           <label htmlFor='name'>姓名:
           <input
               type='string'
@@ -122,7 +122,6 @@ export default function CheckOut({ setPath }) {
         </div>
       </>) : <div>購物完成!</div>
       }
-      <button onClick={() => setPath('shop')}> 返回</button>
     </div>
   )
 }

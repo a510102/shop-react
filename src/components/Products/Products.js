@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useAlert } from 'react-alert';
+
 import EditProduct from './EditProduct';
 import BackProduct from './BackProduct';
 import Loading from '../Loading/Loading';
 
 export default function Products() {
+  const alert = useAlert();
+
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -37,8 +41,16 @@ export default function Products() {
       headers: { 'content-type': (type === 'PUT' || type === 'POST') && 'application/json' },
     });
     const result = await response.json();
-    if (result.success) {
+    const { success, message } = result;
+    if (success) {
       fetchProducts();
+      if (message) {
+        alert.success(message);
+      }
+    } else {
+      if (message) {
+        alert.error(message)
+      }
     }
   }
 
@@ -100,6 +112,8 @@ export default function Products() {
         updateProduct={updateProduct}
         addProduct={addProduct}
         handleCancel={handleCancel}
+        setProduct={setProduct}
+        alert={alert}
       />
       <ul>
         <li style={{ display: 'flex', width: '50vw', justifyContent: 'space-around', alignItems: 'center' }}>
