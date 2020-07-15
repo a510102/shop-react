@@ -9,25 +9,25 @@ export default function EditOrderList({ order, handleChange, editOrderList, hand
         <input
           name='name'
           id='name'
-          value={order.user.name}
+          value={order.user.name || ''}
           onChange={handleChange} />
         <label htmlFor='tel'>電話:</label>
         <input
           name='tel'
           id='tel'
-          value={order.user.tel}
+          value={order.user.tel || ''}
           onChange={handleChange} />
         <label htmlFor='address'>地址:</label>
         <input
           name='address'
           id='address'
-          value={order.user.address}
+          value={order.user.address || ''}
           onChange={handleChange} />
         <label htmlFor='email'>E-mail:</label>
         <input
           name='email'
           id='email'
-          value={order.user.email}
+          value={order.user.email || ''}
           onChange={handleChange} />
         <label>已付款
               <input
@@ -36,7 +36,6 @@ export default function EditOrderList({ order, handleChange, editOrderList, hand
             checked={order.is_paid}
             onChange={handleChange} />
         </label>
-
       </div>
       <h3>商品:</h3>
       {

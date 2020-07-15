@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+
 import ShopProduct from './ShopProduct';
 import Loading from '../Loading/Loading';
+import Pages from '../Pages';
+
 import './shop.scss';
 
 
@@ -9,17 +12,26 @@ export default function Shop() {
 
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        fetchProducts();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const [dePage, setDePage] = useState(1)
+    const [pages, setPages] = useState(null)
 
-    const fetchProducts = async () => {
-        const Url = 'https://vue-course-api.hexschool.io/api/jay/products';
+
+    useEffect(() => {
+        fetchProducts(dePage);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dePage])
+
+    const fetchProducts = async (page) => {
+        const Url = `https://vue-course-api.hexschool.io/api/jay/products?page=${page}`;
         const response = await fetch(Url);
         const datas = await response.json();
-        setProducts(datas.products);
-        setLoading(false);
+        const { success, products, pagination } = datas;
+        if (success) {
+            setProducts(products);
+            setLoading(false);
+            setPages(pagination.total_pages)
+        }
+
     }
 
     if (loading) {
@@ -36,6 +48,7 @@ export default function Shop() {
                 filterProducts.length > 0 ? filterProducts.map(data => <ShopProduct data={data} key={data.id} />) : (
                     <div>現在還沒有商品喲~</div>)
             }
+            <Pages dePage={dePage} setDePage={setDePage} num={pages} />
         </ul>
     )
 }

@@ -71,17 +71,20 @@ export default function Nav({ auth, setAuth }) {
                             Shop
                         </Link>
                     </li>
-                    <li className='navbar-item'>
-                        <Link
-                            to='/shopcart'
-                            className={path === '/shopcart' ? 'active' : ''}>
-                            ShopCart
+                    {
+                        !auth && (<li className='navbar-item'>
+                            <Link
+                                to='/shopcart'
+                                className={path === '/shopcart' ? 'active' : ''}>
+                                ShopCart
                         </Link>
-                    </li>
+                        </li>)
+                    }
+
                 </ul>
             </nav>
             {
-                auth ? <Link to='/' onClick={handleLogout}>LogOut</Link> : <Link to='/login' className={path === '/login' ? 'active' : ''}>Login</Link>
+                auth ? <Link to='/home' onClick={handleLogout}>LogOut</Link> : <Link to='/login' className={path === '/login' ? 'active' : ''}>Login</Link>
             }
         </header>
     )

@@ -27,7 +27,7 @@ export default function Router({ carts, dispatch, setAuth, auth }) {
             path="/shop-react"
             render={() => {
               return (
-                auth ?
+                !auth ?
                   <Redirect to="/home" /> :
                   <Redirect to="/products" />
               )

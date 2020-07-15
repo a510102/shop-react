@@ -1,0 +1,45 @@
+form {
+  width: 400px;
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  h2 {
+    width: 4em;
+    height: 4em;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin: 0 auto;
+    color: #2edfb8;
+    background: #fff;
+  }
+  label {
+    padding: 0.2em;
+  }
+  input {
+    width: 100%;
+    padding: 0.2em;
+  }
+  button {
+    font-size: 1.2em;
+    margin-left: 0.5em;
+    padding: 0.3em;
+    color: #489f28;
+    border-color: #489f28;
+    border-radius: 0.3em;
+    &:hover {
+      color: #e1e1e1;
+      background: #489f28;
+    }
+  }
+  .form-btn {
+    margin-top: 0.5em;
+    text-align: end;
+  }
+}

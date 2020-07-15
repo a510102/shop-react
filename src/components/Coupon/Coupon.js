@@ -8,17 +8,17 @@ export default function Coupon({ coupon, updateIsenable, openUpdateCoupon, updat
   }
 
   return (
-    <li style={{ display: 'flex', width: '50vw', justifyContent: 'space-around', alignItems: 'center' }}>
-      <p>{coupon.title}</p>
-      <p>{coupon.code}</p>
-      <p>{coupon.percent / 100} 折</p>
-      <p>{changeToDate(coupon.due_date)}</p>
-      <input
+    <tr>
+      <td>{coupon.title}</td>
+      <td>{coupon.code}</td>
+      <td>{coupon.percent / 100} 折</td>
+      <td>{changeToDate(coupon.due_date)}</td>
+      <td><input
         type='checkbox'
         onChange={(e) => updateIsenable(e, coupon)}
-        checked={coupon.is_enabled === 1 ? true : false} />
-      <button onClick={() => openUpdateCoupon(coupon)}>編輯</button>
-      <button onClick={handleDelete}>刪除</button>
-    </li>
+        checked={coupon.is_enabled === 1 ? true : false} /></td>
+      <td><button onClick={() => openUpdateCoupon(coupon)}>編輯</button></td>
+      <td> <button onClick={handleDelete}>刪除</button></td>
+    </tr>
   )
 }

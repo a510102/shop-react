@@ -4,6 +4,9 @@ import { useAlert } from 'react-alert';
 import EditCoupon from './EditCoupon';
 import Coupon from './Coupon';
 import Loading from '../Loading/Loading';
+import Pages from '../Pages';
+
+import './CouponList.scss'
 
 
 export default function CouponsList() {
@@ -13,23 +16,29 @@ export default function CouponsList() {
   const [coupon, setCoupon] = useState({});
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [dePage, setDePage] = useState(1);
+  const [pages, setPages] = useState(null)
 
-  const fetchData = async () => {
-    const Url = 'https://vue-course-api.hexschool.io/api/jay/admin/coupons';
+  const fetchData = async (page) => {
+    const Url = `https://vue-course-api.hexschool.io/api/jay/admin/coupons?page=${page}`;
     const response = await fetch(Url, {
       credentials: 'include',
     });
     const data = await response.json();
-    if (data.success) {
-      setCoupons(data.coupons);
+
+    const { success, pagination, coupons } = data;
+
+    if (success) {
+      setCoupons(coupons);
+      setPages(pagination.total_pages)
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchData();
+    fetchData(dePage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dePage]);
 
   const updateDate = async (data, id, type) => {
     const Url = id ? `https://vue-course-api.hexschool.io/api/jay/admin/coupon/${id}` : 'https://vue-course-api.hexschool.io/api/jay/admin/coupon';
@@ -100,7 +109,7 @@ export default function CouponsList() {
   }
 
   return (
-    <div>
+    <div className='CouponList'>
       <h2>Coupon</h2>
       <EditCoupon
         open={open}
@@ -111,29 +120,33 @@ export default function CouponsList() {
         addCoupon={addCoupon}
         handleCancel={handleCancel}
       />
-
-      <ul>
-        <li style={{ display: 'flex', width: '50vw', justifyContent: 'space-around' }}>
-          <p>優惠卷</p>
-          <p>代碼</p>
-          <p>折扣</p>
-          <p>使用期限</p>
-          <p>使用</p>
-          <p>編輯</p>
-          <p>刪除</p>
-        </li>
-        {
-          coupons && coupons.map((coupon, i) => {
-            return <Coupon
-              key={i}
-              coupon={coupon}
-              updateIsenable={updateIsenable}
-              openUpdateCoupon={openUpdateCoupon}
-              updateDate={updateDate}
-            />
-          })
-        }
-      </ul>
+      <table className="CouponList-table">
+        <thead>
+          <tr>
+            <th>優惠卷</th>
+            <th>代碼</th>
+            <th>折扣</th>
+            <th>使用期限</th>
+            <th>使用</th>
+            <th>編輯</th>
+            <th>刪除</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            coupons && coupons.map((coupon, i) => {
+              return <Coupon
+                key={i}
+                coupon={coupon}
+                updateIsenable={updateIsenable}
+                openUpdateCoupon={openUpdateCoupon}
+                updateDate={updateDate}
+              />
+            })
+          }
+        </tbody>
+      </table>
+      <Pages dePage={dePage} setDePage={setDePage} num={pages} />
     </div>
   )
 }
