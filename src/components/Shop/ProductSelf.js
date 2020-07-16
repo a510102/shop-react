@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopCartContext } from '../Shop/ShopCartContext';
+import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
 import Loading from '../Loading/Loading';
 
 export default function ProductSelf() {

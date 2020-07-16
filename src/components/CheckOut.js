@@ -1,13 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
-import { ShopCartContext } from './Shop/ShopCartContext';
 
 
 export default function CheckOut() {
   const alert = useAlert();
-
-  const { carts } = useContext(ShopCartContext);
-  console.log(carts)
   const [order, setOrder] = useState({
     user: {},
     message: ''
@@ -16,7 +12,7 @@ export default function CheckOut() {
   const [pay, setPay] = useState(false);
   const [done, setDone] = useState(false);
 
-  const handleChange = event => {
+  function handleChange(event) {
     const { name, value } = event.target;
     setOrder(preOrder => {
       if (name === 'message') {
@@ -36,7 +32,7 @@ export default function CheckOut() {
     })
   }
 
-  const AddOrder = async () => {
+  async function AddOrder() {
     const Url = 'https://vue-course-api.hexschool.io/api/jay/order';
     let newOrder;
     if (!order.message) {
@@ -64,7 +60,7 @@ export default function CheckOut() {
     }
   }
 
-  const handlePay = async () => {
+  async function handlePay() {
     const Url = `https://vue-course-api.hexschool.io/api/jay/pay/${id}`;
     const response = await fetch(Url, { method: 'POST' });
     const datas = await response.json();

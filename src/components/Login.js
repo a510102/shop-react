@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import Loading from './Loading/Loading';
-import './Logoin.scss'
+import '../styles/Logoin.scss'
 
 export default function Login({ setAuth }) {
   const history = useHistory();
@@ -16,7 +16,7 @@ export default function Login({ setAuth }) {
   const [loading, setLoading] = useState(false);
 
 
-  const handleChange = event => {
+  function handleChange(event) {
     const { name, value } = event.target;
     setUser(preUser => {
       return {
@@ -26,7 +26,7 @@ export default function Login({ setAuth }) {
     });
   }
 
-  const handleLogin = async (event) => {
+  async function handleLogin(event) {
     event.preventDefault();
 
     const { username, password } = user;

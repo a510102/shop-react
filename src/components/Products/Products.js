@@ -6,7 +6,7 @@ import BackProduct from './BackProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import './Products.scss'
+import '../../styles/Products.scss'
 
 export default function Products() {
   const alert = useAlert();
@@ -18,7 +18,12 @@ export default function Products() {
   const [dePage, setDePage] = useState(1);
   const [pages, setPages] = useState(null);
 
-  const fetchProducts = async (page) => {
+  useEffect(() => {
+    fetchProducts(dePage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dePage]);
+
+  async function fetchProducts(page) {
     const Url = `https://vue-course-api.hexschool.io/api/jay/products?page=${page}`;
     const response = await fetch(Url);
     const data = await response.json();
@@ -30,12 +35,7 @@ export default function Products() {
 
   }
 
-  useEffect(() => {
-    fetchProducts(dePage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dePage])
-
-  const updateData = async (data, id, type) => {
+  async function updateData(data, id, type) {
     let Url;
     if (id) {
       Url = `https://vue-course-api.hexschool.io/api/jay/admin/product/${id}`;
@@ -63,20 +63,20 @@ export default function Products() {
     }
   }
 
-  const updateEnabled = (e, item) => {
+  function updateEnabled(e, item) {
     const { checked } = e.target;
     const newproduct = { ...item, is_enabled: checked ? 1 : 0 };
     updateData(newproduct, item.id, 'PUT');
   }
 
-  const openUpdateProduct = item => {
+  function openUpdateProduct(item) {
     setProduct(item);
     if (!open) {
       setOpen(true);
     }
   }
 
-  const handleChange = event => {
+  function handleChange(event) {
     const { name, value } = event.target;
     setProduct(preProduct => {
       return {
@@ -86,22 +86,22 @@ export default function Products() {
     })
   }
 
-  const addProduct = () => {
+  function addProduct() {
     updateData(product, null, 'POST');
     setProduct({});
     setOpen(false);
   }
 
-  const updateProduct = () => {
+  function updateProduct() {
     updateData(product, product.id, 'PUT');
     setOpen(false);
   }
 
-  const deleteProduct = (id) => {
+  function deleteProduct(id) {
     updateData(null, id, 'DELETE');
   }
 
-  const handleCancel = () => {
+  function handleCancel() {
     setProduct({});
     setOpen(false);
   }

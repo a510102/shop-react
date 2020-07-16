@@ -4,9 +4,7 @@ import ShopProduct from './ShopProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import './shop.scss';
-
-
+import '../../styles/shop.scss';
 
 export default function Shop() {
 
@@ -15,13 +13,12 @@ export default function Shop() {
     const [dePage, setDePage] = useState(1)
     const [pages, setPages] = useState(null)
 
-
     useEffect(() => {
         fetchProducts(dePage);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dePage])
 
-    const fetchProducts = async (page) => {
+    async function fetchProducts(page) {
         const Url = `https://vue-course-api.hexschool.io/api/jay/products?page=${page}`;
         const response = await fetch(Url);
         const datas = await response.json();

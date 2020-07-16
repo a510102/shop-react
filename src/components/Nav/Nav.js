@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import './Nav.scss'
+import '../../styles/Nav.scss'
 
 export default function Nav({ auth, setAuth }) {
     let history = useHistory();
@@ -86,6 +86,9 @@ export default function Nav({ auth, setAuth }) {
             {
                 auth ? <Link to='/home' onClick={handleLogout}>LogOut</Link> : <Link to='/login' className={path === '/login' ? 'active' : ''}>Login</Link>
             }
+            <div className='hamburger'>
+                <div className='bar'></div>
+            </div>
         </header>
     )
 }

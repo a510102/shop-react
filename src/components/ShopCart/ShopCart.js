@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useAlert } from 'react-alert'
-import { ShopCartContext } from './ShopCartContext';
+import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
 import { useHistory } from 'react-router-dom'
 import CheckOut from '../CheckOut';
 
-import './shopcart.scss'
+import '../../styles/shopcart.scss'
 
 
 
@@ -17,8 +17,12 @@ export default function ShopCart() {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const fetchData = async () => {
+    async function fetchData() {
         const Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
         const response = await fetch(Url);
         const datas = await response.json();
@@ -28,13 +32,7 @@ export default function ShopCart() {
         }
     }
 
-    useEffect(() => {
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-
-    const handleDeleCart = async (id) => {
+    async function handleDeleCart(id) {
         const Url = `https://vue-course-api.hexschool.io/api/jay/cart/${id}`;
         const response = await fetch(Url, { method: "DELETE" });
         const result = await response.json();
@@ -45,12 +43,12 @@ export default function ShopCart() {
         }
     }
 
-    const handleChange = event => {
+    function handleChange(event) {
         const value = event.target.value;
         setCoupon(value);
     }
 
-    const handleCoupon = async (text) => {
+    async function handleCoupon(text) {
         const Url = 'https://vue-course-api.hexschool.io/api/jay/coupon';
         const data = { data: { code: text } }
         const response = await fetch(Url, { method: 'POST', body: JSON.stringify(data), headers: { 'content-type': 'application/json' } });
@@ -66,7 +64,7 @@ export default function ShopCart() {
         }
     };
 
-    const handleCheckOut = () => {
+    function handleCheckOut() {
         setOpen(true);
     }
 
@@ -76,7 +74,7 @@ export default function ShopCart() {
                 !loading && (
                     <ul className='shopcart-itemlist'>
                         {
-                            !carts.carts.length ? 'nothings' : (
+                            !carts.carts.length ? <h3>nothings</h3> : (
                                 <>
                                     {carts.carts.map((cart, i) => {
                                         return (

@@ -6,7 +6,7 @@ import EditOrderList from './EditOrderList';
 import Order from './Order';
 import Loading from '../Loading/Loading'
 
-import './OrderList.scss';
+import '../../styles/OrderList.scss';
 
 
 export default function OrderList() {
@@ -22,7 +22,7 @@ export default function OrderList() {
   const [pages, setPages] = useState(null);
 
 
-  const fetchData = async (page) => {
+  async function fetchData(page) {
     setLoading(true);
     const Url = `https://vue-course-api.hexschool.io/api/jay/admin/orders?page=${page}`;
     const response = await fetch(Url, {
@@ -42,7 +42,7 @@ export default function OrderList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dePage]);
 
-  const showDetail = num => {
+  function showDetail(num) {
     if (!openDetail && id.length === 0) {
       setOpenDetail(!openDetail);
       setId([num])
@@ -58,7 +58,7 @@ export default function OrderList() {
     }
   }
 
-  const handleChange = event => {
+  function handleChange(event) {
     const { name, value, checked } = event.target;
     setOrder(preOrder => {
       if (name === 'email' || name === 'address' || name === 'name' || name === 'tel') {
@@ -84,12 +84,12 @@ export default function OrderList() {
     })
   }
 
-  const openEditOrder = item => {
+  function openEditOrder(item) {
     setShow(true);
     setOrder(item);
   }
 
-  const editOrderList = async () => {
+  async function editOrderList() {
     const Url = `https://vue-course-api.hexschool.io/api/jay/admin/order/${order.id}`;
     setShow(false);
     setLoading(true);
@@ -108,7 +108,7 @@ export default function OrderList() {
     }
   }
 
-  const handleCancel = () => {
+  function handleCancel() {
     setShow(false);
     setOrder(null);
   }

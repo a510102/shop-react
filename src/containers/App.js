@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { produce } from "immer";
 import {
   BrowserRouter,
 } from 'react-router-dom';
@@ -7,39 +6,20 @@ import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import Nav from '../components/Nav/Nav';
 import Router from '../router/Router';
+import { useImmerReducer, cartReducer } from '../reducers/reducers'
 
-import "./App.scss";
-// code-Splitting
-
-
-function useImmerReducer(reducer, initialState) {
-  return React.useReducer(produce(reducer), initialState);
-}
-
-const cartReducer = (carts, action) => {
-  switch (action.type) {
-    case "UPDATE_CART":
-      return carts = action.cart;
-    case "UPDATE_PRICE":
-      return {
-        ...carts,
-        final_total: action.price
-      };
-    default:
-      return carts;
-  }
-}
-
-const options = {
-  position: 'top center',
-  timeout: 3000,
-  offset: '30px',
-  transition: 'fade'
-}
+import "../styles/App.scss";
 
 export default function App() {
   const [carts, dispatch] = useImmerReducer(cartReducer, []);
   const [auth, setAuth] = useState(false);
+
+  const options = {
+    position: 'top center',
+    timeout: 3000,
+    offset: '30px',
+    transition: 'fade'
+  }
 
   return (
     <div className="App">

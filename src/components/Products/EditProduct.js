@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 export default function EditProduct({ open, setOpen, product, handleChange, updateProduct, addProduct, handleCancel, setProduct, alert }) {
   const inputEl = useRef(null);
 
-  const uploadFild = async () => {
+  async function uploadFild() {
     const uploadedFile = inputEl.current.files[0];
     const formData = new FormData();
     formData.append('file-to-upload', uploadedFile);

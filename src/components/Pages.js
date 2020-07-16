@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import './Pages.scss'
+import '../styles/Pages.scss'
 
 export default function Pages({ num, setDePage, dePage }) {
   const [pages, setPages] = useState([]);

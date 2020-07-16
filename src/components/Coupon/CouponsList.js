@@ -6,7 +6,7 @@ import Coupon from './Coupon';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import './CouponList.scss'
+import '../../styles/CouponList.scss'
 
 
 export default function CouponsList() {
@@ -19,7 +19,7 @@ export default function CouponsList() {
   const [dePage, setDePage] = useState(1);
   const [pages, setPages] = useState(null)
 
-  const fetchData = async (page) => {
+  async function fetchData(page) {
     const Url = `https://vue-course-api.hexschool.io/api/jay/admin/coupons?page=${page}`;
     const response = await fetch(Url, {
       credentials: 'include',
@@ -40,7 +40,7 @@ export default function CouponsList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dePage]);
 
-  const updateDate = async (data, id, type) => {
+  async function updateDate(data, id, type) {
     const Url = id ? `https://vue-course-api.hexschool.io/api/jay/admin/coupon/${id}` : 'https://vue-course-api.hexschool.io/api/jay/admin/coupon';
     const response = await fetch(Url, {
       method: type,
@@ -62,24 +62,23 @@ export default function CouponsList() {
     }
   }
 
-  const updateIsenable = (event, item) => {
+  function updateIsenable(event, item) {
     const newitem = { ...item, is_enabled: event.target.checked ? 1 : 0 };
     updateDate(newitem, item.id, 'PUT');
   }
 
-  const openUpdateCoupon = item => {
+  function openUpdateCoupon(item) {
     setCoupon(item);
     setOpen(true);
   }
 
-  const handleChange = event => {
+  function handleChange(event) {
     let { name, value, checked, valueAsNumber } = event.target;
     if (name === 'due_date') {
       value = valueAsNumber / 1000;
     } else if (name === 'is_enabled') {
       value = checked ? 1 : 0;
     }
-    console.log(name, value);
     setCoupon(preCoupon => {
       return {
         ...preCoupon,
@@ -88,7 +87,7 @@ export default function CouponsList() {
     })
   }
 
-  const updateCoupon = () => {
+  function updateCoupon() {
     updateDate(coupon, coupon.id, 'PUT');
     setOpen(false);
   }
@@ -99,7 +98,7 @@ export default function CouponsList() {
     setOpen(false);
   }
 
-  const handleCancel = () => {
+  function handleCancel() {
     setCoupon({})
     setOpen(false)
   }

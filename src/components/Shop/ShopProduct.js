@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopCartContext } from './ShopCartContext';
-import './shopProduct.scss';
+import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
+import '../../styles/shopProduct.scss';
 
 export default function Product({ data }) {
     const history = useHistory();
     const alert = useAlert();
     const { dispatch } = useContext(ShopCartContext);
 
-    const handleAddToCart = async (id) => {
+    async function handleAddToCart(id) {
         const product = { data: { product_id: id, qty: 1 } };
         let Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
         let response = await fetch(Url, {
@@ -36,14 +36,12 @@ export default function Product({ data }) {
 
     return (
         <li id={data.id} className="product">
+            <img src={data.imageUrl} alt="product" />
             <div className='product-content'>
                 <h3 className='product-title'>
                     <span>{data.category} :</span>
                     <span>{data.title}</span>
                 </h3>
-                <div className='product-img' >
-                    <img src={data.imageUrl} alt="product" />
-                </div>
                 <p className='product-price'>
                     <span>原價: {data.origin_price} 元</span>
                     <span>{data.price && `特價: ${data.price} 元 `}</span>
