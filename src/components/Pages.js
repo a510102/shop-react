@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import '../styles/Pages.scss'
 
 export default function Pages({ num, setDePage, dePage }) {
   const [pages, setPages] = useState([]);
@@ -19,22 +18,24 @@ export default function Pages({ num, setDePage, dePage }) {
     }
   }
 
+  const active = 'bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l';
+  const normal = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l'
   return (
-    <ul className='pages'>
+    <ul className='max-w-sm inline-flex'>
       {
-        dePage !== 1 && <li><button onClick={() => setDePage(dePage - 1)}>Pre</button> </li>
+        dePage !== 1 && <li><button className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l' onClick={() => setDePage(dePage - 1)}>Pre</button> </li>
       }
       {
         pages.length > 1 && (pages.map((page, i) => (
           <li key={i}>
-            <button className={page === dePage ? 'active' : ''} onClick={() => setDePage(page)}>
+            <button className={dePage === page ? active : normal} onClick={() => setDePage(page)}>
               {page}
             </button>
           </li>
         )))
       }
       {
-        dePage !== num && <li> <button onClick={() => setDePage(dePage + 1)}>Next</button></li>
+        dePage !== num && <li> <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r' onClick={() => setDePage(dePage + 1)}>Next</button></li>
       }
 
     </ul>

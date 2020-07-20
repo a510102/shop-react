@@ -8,7 +8,6 @@ import Nav from '../components/Nav/Nav';
 import Router from '../router/Router';
 import { useImmerReducer, cartReducer } from '../reducers/reducers'
 
-import "../styles/App.scss";
 
 export default function App() {
   const [carts, dispatch] = useImmerReducer(cartReducer, []);
@@ -22,7 +21,7 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div className="container mx-auto px-3">
       <BrowserRouter>
         <Nav
           setAuth={setAuth}

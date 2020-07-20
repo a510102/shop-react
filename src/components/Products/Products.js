@@ -6,8 +6,6 @@ import BackProduct from './BackProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import '../../styles/Products.scss'
-
 export default function Products() {
   const alert = useAlert();
 

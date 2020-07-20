@@ -6,9 +6,6 @@ import Coupon from './Coupon';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import '../../styles/CouponList.scss'
-
-
 export default function CouponsList() {
 
   const alert = useAlert();

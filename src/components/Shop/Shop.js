@@ -4,8 +4,6 @@ import ShopProduct from './ShopProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
 
-import '../../styles/shop.scss';
-
 export default function Shop() {
 
     const [products, setProducts] = useState(null);
@@ -40,7 +38,7 @@ export default function Shop() {
     }
     const filterProducts = products.filter(data => data.is_enabled === 1);
     return (
-        <ul className="productlist">
+        <ul className="flex my-2 flex-wrap">
             {
                 filterProducts.length > 0 ? filterProducts.map(data => <ShopProduct data={data} key={data.id} />) : (
                     <div>現在還沒有商品喲~</div>)

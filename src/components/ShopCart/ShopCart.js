@@ -4,10 +4,6 @@ import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext'
 import { useHistory } from 'react-router-dom'
 import CheckOut from '../CheckOut';
 
-import '../../styles/shopcart.scss'
-
-
-
 export default function ShopCart() {
     const alert = useAlert();
     const history = useHistory();
@@ -108,7 +104,7 @@ export default function ShopCart() {
                             )
                         }
                         <button
-                            className='close-btn'
+                            className='bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-full'
                             onClick={() => { history.push('/shop') }}>返回</button>
                     </ul>
                 )

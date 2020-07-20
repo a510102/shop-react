@@ -6,8 +6,6 @@ import EditOrderList from './EditOrderList';
 import Order from './Order';
 import Loading from '../Loading/Loading'
 
-import '../../styles/OrderList.scss';
-
 
 export default function OrderList() {
   const alert = useAlert();
@@ -113,41 +111,41 @@ export default function OrderList() {
     setOrder(null);
   }
 
-  if (orders && !loading) {
-    const filterOrders = orders.filter(order => order.user);
-    return (
-      <div className='OrderList'>
-        <h2>OrderList</h2>
-        {
-          show && <EditOrderList order={order} handleChange={handleChange} editOrderList={editOrderList} handleCancel={handleCancel} />
-        }
-        <table className="OrderList-table">
-          <thead>
-            <tr>
-              <th>訂單編號 :</th>
-              <th>商品列表 :</th>
-              <th>名字 :</th>
-              <th>地址 :</th>
-              <th>連絡電話 :</th>
-              <th>E-mail :</th>
-              <th>下單時間 :</th>
-              <th>結帳時間 :</th>
-              <th>是否付款 :</th>
-              <th>修改資料 :</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              filterOrders.map((order, i) => {
-                return <Order key={i} show={show} order={order} showDetail={showDetail} openDetail={openDetail} id={id} openEditOrder={openEditOrder} />
-              })
-            }
-          </tbody>
-        </table>
-        <Pages dePage={dePage} setDePage={setDePage} num={pages} />
-      </div>
-    )
-  }
+  return (
+    <div className='OrderList'>
+      <h2>OrderList</h2>
+      {
+        show && <EditOrderList order={order} handleChange={handleChange} editOrderList={editOrderList} handleCancel={handleCancel} />
+      }
 
-  return <Loading />
+      {
+        orders && !loading ? (
+          <table className="OrderList-table">
+            <thead>
+              <tr>
+                <th>訂單編號 :</th>
+                <th>商品列表 :</th>
+                <th>名字 :</th>
+                <th>地址 :</th>
+                <th>連絡電話 :</th>
+                <th>E-mail :</th>
+                <th>下單時間 :</th>
+                <th>結帳時間 :</th>
+                <th>是否付款 :</th>
+                <th>修改資料 :</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                orders.filter(order => order.user).map((order, i) => {
+                  return <Order key={i} show={show} order={order} showDetail={showDetail} openDetail={openDetail} id={id} openEditOrder={openEditOrder} />
+                })
+              }
+            </tbody>
+          </table>
+        ) : <Loading />
+      }
+      <Pages dePage={dePage} setDePage={setDePage} num={pages} />
+    </div>
+  )
 }
