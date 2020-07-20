@@ -28,44 +28,44 @@ export default function Router({ carts, dispatch, setAuth, auth }) {
             render={() => {
               return (
                 !auth ?
-                  <Redirect to="/home" /> :
-                  <Redirect to="/products" />
+                  <Redirect to="/shop-react/home" /> :
+                  <Redirect to="/shop-react/products" />
               )
             }}
           />
-          <Route exact path='/home' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/login'>
+          <Route exact path='/shop-react/home' component={Home} />
+          <Route path='/shop-react/about' component={About} />
+          <Route path='/shop-react/login'>
             <Login setAuth={setAuth} />
           </Route>
-          <Route exact path='/shop'>
+          <Route exact path='/shop-react/shop'>
             <ShopCartContext.Provider value={{ carts, dispatch }}>
               <Shop />
             </ShopCartContext.Provider>
           </Route>
-          <Route path='/shop/:id'>
+          <Route path='/shop-react/shop/:id'>
             <ShopCartContext.Provider value={{ carts, dispatch }}>
               <ProductSelf />
             </ShopCartContext.Provider>
           </Route>
-          <Route path='/shopcart'>
+          <Route path='/shop-react/shopcart'>
             <ShopCartContext.Provider value={{ carts, dispatch }}>
               <ShopCart />
             </ShopCartContext.Provider>
           </Route>
           <PrivateRoute
             exact
-            path='/products'
+            path='/shop-react/products'
             auth={auth}
             component={Products} />
           <PrivateRoute
             exact
-            path='/coupon'
+            path='/shop-react/coupon'
             auth={auth}
             component={CouponsList} />
           <PrivateRoute
             exact
-            path='/orderList'
+            path='/shop-react/orderList'
             auth={auth}
             component={OrderList} />
           <Route component={NotFound} />
