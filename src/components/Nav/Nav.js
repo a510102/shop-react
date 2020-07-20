@@ -43,47 +43,47 @@ export default function Nav({ auth, setAuth }) {
                         auth ? (
                             <>
                                 <Link
-                                    to='/products'
-                                    className={path === '/products' ? active.nav : normal.nav}>
+                                    to='/shop-react/products'
+                                    className={path === '/shop-react/products' ? active.nav : normal.nav}>
                                     Products
                                     </Link>
                                 <Link
-                                    to='/orderList'
-                                    className={path === 'orderList' ? active.nav : normal.nav}>
+                                    to='/shop-react/orderList'
+                                    className={path === '/shop-react/orderList' ? active.nav : normal.nav}>
                                     OrderList
                                     </Link>
 
                                 <Link
-                                    to='/coupon'
-                                    className={path === '/coupon' ? active.nav : normal.nav}>
+                                    to='/shop-react/coupon'
+                                    className={path === '/shop-react/coupon' ? active.nav : normal.nav}>
                                     Coupon
                                     </Link>
                             </>
                         ) : (
                                 <>
                                     <Link
-                                        to='/home'
-                                        className={path === '/home' ? active.nav : normal.nav}>
+                                        to='/shop-react/home'
+                                        className={path === '/shop-react/home' ? active.nav : normal.nav}>
                                         Home
                                         </Link>
                                     <Link
-                                        to='/about'
-                                        className={path === '/about' ? active.nav : normal.nav}>
+                                        to='/shop-react/about'
+                                        className={path === '/shop-react/about' ? active.nav : normal.nav}>
                                         About
                                         </Link>
                                 </>
                             )
                     }
                     <Link
-                        to='/shop'
-                        className={path === '/shop' ? active.nav : normal.nav}>
+                        to='/shop-react/shop'
+                        className={path === '/shop-react/shop' ? active.nav : normal.nav}>
                         Shop
                         </Link>
                     {
                         !auth && (
                             <Link
-                                to='/shopcart'
-                                className={path === '/shopcart' ? active.nav : normal.nav}>
+                                to='/shop-react/shopcart'
+                                className={path === '/shop-react/shopcart' ? active.nav : normal.nav}>
                                 ShopCart
                             </Link>
                         )
@@ -92,8 +92,8 @@ export default function Nav({ auth, setAuth }) {
                 <div>
                     {
                         auth ? (
-                            <Link to='/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
-                                <Link to='/login' className={path === '/login' ? active.logo : normal.logo}>Login</Link>)
+                            <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
+                                <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
                     }
                 </div>
             </div>
