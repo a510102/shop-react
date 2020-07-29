@@ -1,0 +1,1 @@
+{"version":3,"sources":["Home.css"],"names":[],"mappings":"AAAA,MACE,8FAAuE,CACvE,qBAAsB,CACtB,uBAA2B,CAC3B,UACF","file":"5.cbb211f8.chunk.css","sourcesContent":[".home {\n  background-image: url(\"../img/sliced-sushi-on-tray-1028429\\ \\(1\\).jpg\");\n  background-size: cover;\n  background-position: center;\n  opacity: 0.8;\n}\n"]}
