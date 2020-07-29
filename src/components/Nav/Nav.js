@@ -31,7 +31,7 @@ export default function Nav() {
     return (
         <nav className="flex items-center justify-between flex-wrap bg-teal-400 p-6 shadow-md mb-2 rounded rounded-t-none">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
-                <span className="font-semibold text-xl tracking-tight">Shop-react</span>
+                <span className="font-semibold text-3xl tracking-tight">Jay's Shop</span>
             </div>
             <div className="block lg:hidden" onClick={() => { setIsOpen(!isOpen) }}>
                 <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">

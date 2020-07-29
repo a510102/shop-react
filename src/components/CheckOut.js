@@ -72,51 +72,69 @@ export default function CheckOut() {
     }
   }
 
+  const style = {
+    div: 'w-full md:w-1/2 lg:w-1/3  px-3 mt-3 mb-6 md:mb-0',
+    label: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
+    input: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name',
+  }
+
   return (
     <div>
       {!done ? (<>
-        <div>
-          <h2>客戶資訊</h2>
-          <label htmlFor='name'>姓名:
-          <input
+        <h2 className='text-gray-800 text-xl'>客戶資訊</h2>
+        <div className='flex flex-wrap mb-6 text-left'>
+          <section className={style.div}>
+            <label className={style.label} htmlFor='name'>姓名:</label>
+            <input
+              className={style.input}
               type='string'
               name='name'
               id='id'
               onChange={handleChange} />
-          </label>
-          <label htmlFor='address'>地址:
-          <input
+          </section>
+          <section className={style.div}>
+            <label className={style.label} htmlFor='address'>地址: </label>
+            <input
+              className={style.input}
               type='string'
               name='address'
               id='address'
               onChange={handleChange} />
-          </label>
-          <label htmlFor='tel'>電話:
-          <input
+          </section>
+          <section className={style.div}>
+            <label className={style.label} htmlFor='tel'>電話:</label>
+            <input
+              className={style.input}
               type='number'
               name='tel'
               id='tel'
               onChange={handleChange} />
-          </label>
-          <label htmlFor='email'>E-mail:
-          <input
+          </section>
+          <section className={style.div}>
+            <label className={style.label} htmlFor='email'>E-mail:</label>
+            <input
+              className={style.input}
               type='email'
               name='email'
               id='email'
               onChange={handleChange} />
-          </label>
-          <label htmlFor='message'>Message:
-          <input
+          </section>
+          <section className={style.div}>
+            <label className={style.label} htmlFor='message'>Message: </label>
+            <input
+              className={style.input}
               type='message'
               name='message'
               id='message'
               onChange={handleChange} />
-          </label>
-          {
-            !pay ? <button onClick={AddOrder}>完成訂單</button> : <button onClick={handlePay}>確認結帳</button>
-          }
+          </section>
+          <section className='w-full md:w-1/2 lg:w-1/3  px-3 mt-3 mb-6 md:mb-0 sm:relative flex justify-end items-end'>
+            {
+              !pay ? <button onClick={AddOrder} className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded '>完成訂單</button> : <button onClick={handlePay} className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded '>確認結帳</button>
+            }
+          </section>
         </div>
-      </>) : <div>購物完成!</div>
+      </>) : <div className='w-full flex justify-center items-center h-screen text-lg'>購物完成!</div>
       }
     </div>
   )

@@ -113,7 +113,7 @@ export default function OrderList() {
 
   return (
     <div className='container'>
-      <h2 className='text-4xl'>OrderList</h2>
+      <h2 className='text-2xl'>OrderList</h2>
       {
         show && <EditOrderList order={order} handleChange={handleChange} editOrderList={editOrderList} handleCancel={handleCancel} />
       }

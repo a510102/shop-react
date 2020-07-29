@@ -106,7 +106,7 @@ export default function CouponsList() {
 
   return (
     <div className='container'>
-      <h2 className='text-4xl'>Coupon</h2>
+      <h2 className='text-2xl'>Coupon</h2>
       <EditCoupon
         open={open}
         setOpen={setOpen}

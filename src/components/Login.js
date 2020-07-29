@@ -41,15 +41,15 @@ export default function Login() {
         headers: { 'content-type': 'application/json' }
       });
       const result = await response.json();
-      console.log(result)
-      if (result.success) {
+      const { success, message } = result;
+      if (success) {
         setLoading(false);
         userDispatch({ type: 'LOGO_IN' });
         history.push('/shop-react/products');
       } else {
         setLoading(false);
         history.replace('/shop-react/login');
-        alert.error(result.message);
+        alert.error(message);
       }
     } else if (!username && password) {
       alert.show('請輸入E-mail');

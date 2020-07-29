@@ -46,7 +46,7 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
         open ? (
           <div className='w-full'>
             <div className='flex flex-wrap mb-6'>
-              <div className={style.div}>
+              <section className={style.div}>
                 <label className={style.label} htmlFor='category'>類別:</label>
                 <input
                   className={style.input}
@@ -54,8 +54,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='category'
                   value={product.category || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label className={style.label} htmlFor='title'>商品:</label>
                 <input
                   className={style.input}
@@ -63,8 +63,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='title'
                   value={product.title || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor='content' className={style.label}>內容:</label>
                 <input
                   className={style.input}
@@ -72,8 +72,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='content'
                   value={product.content || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor='description' className={style.label}>描述:</label>
                 <input
                   className={style.input}
@@ -81,8 +81,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='description'
                   value={product.description || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor="image" className={style.label}>輸入圖片網址</label>
                 <input
                   type="text"
@@ -92,8 +92,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   id="image"
                   name='imageUrl'
                   placeholder="請輸入圖片連結" />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor="customFile" className={style.label}>或 上傳圖片:</label>
                 <input
                   type="file"
@@ -104,8 +104,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                 {
                   product.imageUrl && <img style={{ width: '200px', height: '200px' }} src={product.imageUrl} alt='proPic' />
                 }
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor='origin_price' className={style.label}>原價:</label>
                 <input
                   className={style.input}
@@ -113,8 +113,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='origin_price'
                   value={product.origin_price || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor='price' className={style.label}>特價:</label>
                 <input
                   className={style.input}
@@ -122,8 +122,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='price'
                   value={product.price || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label htmlFor='unit' className={style.label}>單位:</label>
                 <input
                   className={style.input}
@@ -131,8 +131,8 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   name='unit'
                   value={product.unit || ''}
                   onChange={handleChange} />
-              </div>
-              <div className={style.div}>
+              </section>
+              <section className={style.div}>
                 <label className={style.label} htmlFor='is_enabled'>啟用:</label>
                 <input
                   type='checkbox'
@@ -140,7 +140,7 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
                   onChange={handleChange}
                   id='is_enabled'
                   name='is_enabled' />
-              </div>
+              </section>
               <div className='w-full md:w-1/2 lg:w-1/3 px-3 flex p-4 justify-end'>
                 {
                   !product.hasOwnProperty('id') ? <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded' onClick={addProduct}>Add</button> : <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded' onClick={updateProduct}>Update</button>

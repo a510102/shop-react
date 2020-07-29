@@ -114,7 +114,7 @@ export default function Products() {
 
   return (
     <div className="container">
-      <h2 className='text-4xl'>Products</h2>
+      <h2 className='text-2xl'>Products</h2>
       <EditProduct
         open={open}
         setOpen={setOpen}
