@@ -6,12 +6,11 @@ import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import Nav from '../components/Nav/Nav';
 import Router from '../router/Router';
-import { useImmerReducer, cartReducer } from '../reducers/reducers'
+
 
 
 export default function App() {
-  const [carts, dispatch] = useImmerReducer(cartReducer, []);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   const options = {
     position: 'top center',
@@ -28,8 +27,6 @@ export default function App() {
           auth={auth} />
         <AlertProvider template={AlertTemplate} {...options}>
           <Router
-            carts={carts}
-            dispatch={dispatch}
             setAuth={setAuth}
             auth={auth} />
         </AlertProvider>

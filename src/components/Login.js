@@ -39,10 +39,15 @@ export default function Login({ setAuth }) {
         headers: { 'content-type': 'application/json' }
       });
       const result = await response.json();
+      console.log(result)
       if (result.success) {
         setLoading(false);
         setAuth(true);
-        history.push('/products');
+        history.push('/shop-react/products');
+      } else {
+        setLoading(false);
+        history.replace('/shop-react/login');
+        alert.error(result.message);
       }
     } else if (!username && password) {
       alert.show('請輸入E-mail');
@@ -62,7 +67,7 @@ export default function Login({ setAuth }) {
   return (
     <div className='w-full sm:max-w-xs mx-auto mt-4'>
       <form onSubmit={handleLogin} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-        <h2 className="my-2 text-teal-500">LogoIn</h2>
+        <h2 className="my-1 text-4xl text-teal-500">LogoIn</h2>
         <div className='my-4'>
           <label className='block text-teal-500 text-sm font-bold mb-2'> Email :
         <input
@@ -87,7 +92,7 @@ export default function Login({ setAuth }) {
         </div>
         <div className='flex items-center justify-between'>
           <button className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>Submit</button>
-          <button className='inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800' onClick={() => { history.push('/home') }}>Back</button>
+          <button className='inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800' onClick={() => { history.push('/shop-react/home') }}>Back</button>
         </div>
       </form>
     </div>

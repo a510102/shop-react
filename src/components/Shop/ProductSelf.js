@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 import Loading from '../Loading/Loading';
 
 export default function ProductSelf() {
   const { id } = useParams();
   const history = useHistory();
   const alert = useAlert();
-  const { dispatch } = useContext(ShopCartContext);
+  const { dispatch } = useContext(ShopContext);
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
 
@@ -56,23 +56,46 @@ export default function ProductSelf() {
   }
 
   if (product) {
-    const { title, category, content, origin_price, price, description, unit } = product;
+    const { title, category, content, origin_price, price, description, unit, imageUrl } = product;
     return (
-      <ul className='productself'>
-        <li><h2>名稱:{title}</h2></li>
-        <li><p>種類: {category}</p></li>
-        <li><p>內容:{content}</p></li>
-        <li><p>描述:{description}</p></li>
-        <li><p>原價:{origin_price} {unit}</p></li>
-        {price && <li><p>特價:{price} {unit}</p></li>}
-        <select onChange={handleChange} value={qty}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => (
-            <option key={item} value={item}>{item}</option>
-          ))}
-        </select>
-        <button onClick={() => addProductToCart(id, qty)}>加入購物車</button>
-        <button onClick={() => { history.push('/shop') }}>返回</button>
-      </ul>
+      <div className='container w-ful sm:flex'>
+        <img className='lg:h-auto w-full sm:w-1/2 md:w-1/3 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden' src={imageUrl} alt='product-image' />
+        <div className='w-full sm:w-1/2 md:w-2/3 md:flex sm:ml-2'>
+          <div className='w-full lg:w-1/2 mb-6 md:mb-0'>
+            <h2 className='text-3xl font-medium mb-3'>{category}: {title}</h2>
+            <p className='text-xl font-medium mb-1'>內容:</p>
+            <p className=' mb-3'>{content}</p>
+            <p className=' mb-1 text-xl font-medium'>描述:</p>
+            <p className='mb-3'>{description}</p>
+            <p className=' mb-3'>原價:{origin_price}元 / {unit}</p>
+            {price && <p className=' mb-3'>特價:{price} 元 / {unit}</p>}
+          </div>
+          <div className="w-full lg:w-1/2 mb-6 md:mb-0">
+            <div className='relative'>
+              <label className="block  tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="qty">
+                選擇數量:
+              </label>
+              <select
+                id='qty'
+                className='block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                onChange={handleChange}
+                value={qty}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => (
+                  <option key={item} value={item}>{item}</option>
+                ))}
+              </select>
+            </div>
+            <div className='mt-2 flex justify-between '>
+              <button
+                className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded'
+                onClick={() => addProductToCart(id, qty)}>加入購物車</button>
+              <button
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded'
+                onClick={() => { history.push('/shop-react/shop') }}>返回</button>
+            </div>
+          </div>
+        </div>
+      </div >
     )
   }
 

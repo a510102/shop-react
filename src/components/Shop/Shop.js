@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import ShopProduct from './ShopProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Shop() {
+    const { products, productDispatch } = useContext(ShopContext);
 
-    const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
     const [dePage, setDePage] = useState(1)
     const [pages, setPages] = useState(null)
@@ -22,7 +23,7 @@ export default function Shop() {
         const datas = await response.json();
         const { success, products, pagination } = datas;
         if (success) {
-            setProducts(products);
+            productDispatch({ type: "UPDATE_PRODUCT", product: products });
             setLoading(false);
             setPages(pagination.total_pages)
         }
@@ -38,10 +39,12 @@ export default function Shop() {
     }
     const filterProducts = products.filter(data => data.is_enabled === 1);
     return (
-        <ul className="flex my-2 flex-wrap">
+        <ul className="container flex my-2 flex-wrap">
             {
-                filterProducts.length > 0 ? filterProducts.map(data => <ShopProduct data={data} key={data.id} />) : (
-                    <div>現在還沒有商品喲~</div>)
+                filterProducts.length > 0 ? filterProducts.map(data =>
+                    <ShopProduct data={data} key={data.id} />
+                ) : (
+                        <div>現在還沒有商品喲~</div>)
             }
             <Pages dePage={dePage} setDePage={setDePage} num={pages} />
         </ul>

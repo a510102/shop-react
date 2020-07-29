@@ -105,8 +105,8 @@ export default function CouponsList() {
   }
 
   return (
-    <div className='CouponList'>
-      <h2>Coupon</h2>
+    <div className='container'>
+      <h2 className='text-4xl'>Coupon</h2>
       <EditCoupon
         open={open}
         setOpen={setOpen}
@@ -116,16 +116,16 @@ export default function CouponsList() {
         addCoupon={addCoupon}
         handleCancel={handleCancel}
       />
-      <table className="CouponList-table">
+      <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>優惠卷</th>
-            <th>代碼</th>
-            <th>折扣</th>
-            <th>使用期限</th>
-            <th>使用</th>
-            <th>編輯</th>
-            <th>刪除</th>
+            <th className='border px-4 py-2'>優惠卷</th>
+            <th className='border px-4 py-2'>代碼</th>
+            <th className='border px-4 py-2'>折扣</th>
+            <th className='border px-4 py-2'>使用期限</th>
+            <th className='border px-4 py-2'>使用</th>
+            <th className='border px-4 py-2'>編輯</th>
+            <th className='border px-4 py-2'>刪除</th>
           </tr>
         </thead>
         <tbody>

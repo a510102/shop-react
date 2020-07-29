@@ -4,7 +4,7 @@ import { changeToDate } from '../../js/setTime';
 export default function EditCoupon({ open, setOpen, coupon, handleChange, updateCoupon, addCoupon, handleCancel }) {
   return (
     <>
-      <button onClick={() => setOpen(!open)}>Add Coupon</button>
+      <button className='my-2 bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded' onClick={() => setOpen(!open)}>Add Coupon</button>
       {
         open && (
           <ul>

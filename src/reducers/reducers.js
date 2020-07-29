@@ -1,13 +1,18 @@
-import React from 'react'
+import React from 'react';
 import { produce } from "immer";
-import { UPDATE_CART, UPDATE_PRICE } from './actiontype'
+import {
+  UPDATE_CART,
+  UPDATE_PRICE,
+  CHANGE_CATEGORY,
+  UPDATE_PRODUCT
+} from './actiontype'
 
 
-export function useImmerReducer(reducer, initialState) {
+function useImmerReducer(reducer, initialState) {
   return React.useReducer(produce(reducer), initialState);
-}
+};
 
-export const cartReducer = (carts, action) => {
+const cartReducer = (carts, action) => {
   switch (action.type) {
     case UPDATE_CART:
       return carts = action.cart;
@@ -19,4 +24,17 @@ export const cartReducer = (carts, action) => {
     default:
       return carts;
   }
-}
+};
+
+const productReducer = (products, action) => {
+  switch (action.type) {
+    case UPDATE_PRODUCT:
+      return products = action.product;
+    case CHANGE_CATEGORY:
+      return products.filter(product => product.category === action.category);
+    default:
+      return products;
+  }
+};
+
+export { useImmerReducer, cartReducer, productReducer };

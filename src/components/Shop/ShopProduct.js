@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Product({ data }) {
     const history = useHistory();
     const alert = useAlert();
-    const { dispatch } = useContext(ShopCartContext);
+    const { dispatch } = useContext(ShopContext);
 
     async function handleAddToCart(id) {
         const product = { data: { product_id: id, qty: 1 } };
@@ -30,14 +30,14 @@ export default function Product({ data }) {
     }
 
     function handlePathToProduct(id) {
-        history.push(`/shop/${id}`)
+        history.push(`/shop-react/shop/${id}`)
     }
 
     return (
-        <li id={data.id} className="max-w-full mx-auto mb-1 px-1 rounded overflow-hidden shadow-lg w-full sm:w-1/2 lg:w-1/3 4 rounded-lg shadow-md relative">
-            <img src={data.imageUrl} alt="product" className='w-full rounded' />
-            <div className='px-3 py-2 absolute inset-x-0 bottom-0 bg-gray-100 w-full md:w-4/5  m-auto rounded mb-1'>
-                <h3 className='flex justify-between text-teal-700 font-bold text-xl mb-2'>
+        <li id={data.id} className="max-w-full sm:px-1  mb-1 rounded overflow-hidden shadow-lg w-full sm:w-1/2 lg:w-1/3  rounded-lg shadow-md relative">
+            <img src={data.imageUrl} alt="product" className='w-full h-64 rounded rounded-b-none' />
+            <div className='px-5 py-2  inset-x-0 bottom-0 bg-gray-100 w-full  rounded'>
+                <h3 className=' flex justify-between text-teal-700 font-bold text-xl mb-2'>
                     <span>{data.category} :</span>
                     <span>{data.title}</span>
                 </h3>

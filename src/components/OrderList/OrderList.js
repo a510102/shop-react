@@ -112,27 +112,23 @@ export default function OrderList() {
   }
 
   return (
-    <div className='OrderList'>
-      <h2>OrderList</h2>
+    <div className='container'>
+      <h2 className='text-4xl'>OrderList</h2>
       {
         show && <EditOrderList order={order} handleChange={handleChange} editOrderList={editOrderList} handleCancel={handleCancel} />
       }
 
       {
         orders && !loading ? (
-          <table className="OrderList-table">
+          <table className="table-auto w-full">
             <thead>
               <tr>
-                <th>訂單編號 :</th>
-                <th>商品列表 :</th>
-                <th>名字 :</th>
-                <th>地址 :</th>
-                <th>連絡電話 :</th>
-                <th>E-mail :</th>
-                <th>下單時間 :</th>
-                <th>結帳時間 :</th>
-                <th>是否付款 :</th>
-                <th>修改資料 :</th>
+                <th className='border px-1 py-2'>訂單編號 :</th>
+                <th className='border px-1 py-2'>商品列表 :</th>
+                <th className='border px-1 py-2'>客戶資料 :</th>
+                <th className='border px-1 py-2'>時間 :</th>
+                <th className='border px-1 py-2'>是否付款 :</th>
+                <th className='border px-1 py-2'>修改資料 :</th>
               </tr>
             </thead>
             <tbody>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useAlert } from 'react-alert'
-import { ShopCartContext } from '../../contexts/shopCartContext/ShopCartContext';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 import { useHistory } from 'react-router-dom'
 import CheckOut from '../CheckOut';
 
@@ -8,7 +8,7 @@ export default function ShopCart() {
     const alert = useAlert();
     const history = useHistory();
 
-    const { carts, dispatch } = useContext(ShopCartContext);
+    const { carts, cartDispatch } = useContext(ShopContext);
     const [coupon, setCoupon] = useState('');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ export default function ShopCart() {
         const response = await fetch(Url);
         const datas = await response.json();
         if (datas.success) {
-            dispatch({ type: "UPDATE_CART", cart: datas.data })
+            cartDispatch({ type: "UPDATE_CART", cart: datas.data })
             setLoading(false);
         }
     }
@@ -53,7 +53,7 @@ export default function ShopCart() {
         const { success, message } = result;
 
         if (success) {
-            dispatch({ type: "UPDATE_PRICE", price: result.data.final_total });
+            cartDispatch({ type: "UPDATE_PRICE", price: result.data.final_total });
             alert.success(message);
         } else {
             alert.error(message);
@@ -75,7 +75,7 @@ export default function ShopCart() {
                                     {carts.carts.map((cart, i) => {
                                         return (
                                             <li
-                                                className='ml-auto p-2 flex w-3/4 sm:w-1/2 md:w-1/3 border-b-2 items-center justify-between border-gray-600'
+                                                className='ml-auto p-2 flex w-3/4 lg:w-1/2 border-b-2 items-center justify-between border-gray-600'
                                                 key={i}>
                                                 <p className='flex'>
                                                     <span>{cart.product.title}{cart.qty} {cart.product.unit}</span>
@@ -88,7 +88,7 @@ export default function ShopCart() {
                                     })}
                                     <li className='p-2'>總共: {carts.final_total} 元</li>
                                     <li className='p-2'>
-                                        <input className='p-2 text-teal-400 border border-teal-400 rounded-md' onChange={handleChange}
+                                        <input className='p-2 text-indigo-400 border border-teal-400 rounded-md' onChange={handleChange}
                                             placeholder='輸入優惠卷代碼'
                                             value={coupon || ''} />
                                         <button
@@ -112,7 +112,6 @@ export default function ShopCart() {
                     </ul>
                 )
             }
-
         </div >
     )
 }

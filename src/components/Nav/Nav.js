@@ -13,7 +13,7 @@ export default function Nav({ auth, setAuth }) {
         const result = await response.json();
         if (result.success) {
             setAuth(false);
-            history.replace('/home');
+            history.replace('/shop-react/home');
         }
     }
     const active = {

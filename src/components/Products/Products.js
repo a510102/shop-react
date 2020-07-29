@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useAlert } from 'react-alert';
 
 import EditProduct from './EditProduct';
 import BackProduct from './BackProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Products() {
   const alert = useAlert();
 
-  const [products, setProducts] = useState(null);
+  const { products, productDispatch } = useContext(ShopContext)
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [product, setProduct] = useState({});
@@ -26,7 +27,7 @@ export default function Products() {
     const response = await fetch(Url);
     const data = await response.json();
     if (data.success) {
-      setProducts(data.products)
+      productDispatch({ type: 'UPDATE_PRODUCT', product: data.products })
       setLoading(false);
       setPages(data.pagination.total_pages);
     }
@@ -75,7 +76,10 @@ export default function Products() {
   }
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    let { name, value, checked } = event.target;
+    if (name === 'is_enabled') {
+      value = checked ? 1 : 0;
+    }
     setProduct(preProduct => {
       return {
         ...preProduct,
@@ -109,8 +113,8 @@ export default function Products() {
   }
 
   return (
-    <div className="backProducts">
-      <h2>Products</h2>
+    <div className="container">
+      <h2 className='text-4xl'>Products</h2>
       <EditProduct
         open={open}
         setOpen={setOpen}
@@ -122,17 +126,17 @@ export default function Products() {
         setProduct={setProduct}
         alert={alert}
       />
-      <table className="backProducts-table">
+      <table className="w-full table-auto">
         <thead>
           <tr>
-            <th>產品</th>
-            <th>類別</th>
-            <th>單位</th>
-            <th>原價</th>
-            <th>特價</th>
-            <th>啟用</th>
-            <th>編輯</th>
-            <th>刪除</th>
+            <th className='border px-4 py-2'>產品</th>
+            <th className='border px-4 py-2'>類別</th>
+            <th className='border px-4 py-2'>單位</th>
+            <th className='border px-4 py-2'>原價</th>
+            <th className='border px-4 py-2'>特價</th>
+            <th className='border px-4 py-2'>啟用</th>
+            <th className='border px-4 py-2'>編輯</th>
+            <th className='border px-4 py-2'>刪除</th>
           </tr>
         </thead>
         <tbody>
