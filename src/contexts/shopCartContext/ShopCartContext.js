@@ -1,7 +1,3 @@
 import { createContext } from 'react';
 
-export const ShopContext = createContext({
-  carts: [],
-  products: [],
-  user: {},
-});
+export const ShopContext = createContext({});

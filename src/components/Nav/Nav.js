@@ -5,7 +5,7 @@ import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 export default function Nav() {
     let history = useHistory();
     const path = useLocation().pathname;
-    const { user, userDispatch } = useContext(ShopContext);
+    const { carts, user, userDispatch } = useContext(ShopContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = async () => {
@@ -18,12 +18,12 @@ export default function Nav() {
         }
     }
     const active = {
-        nav: 'block mt-4 lg:inline-block lg:mt-0 text-white mr-4 visited:text-purple-600',
+        nav: 'p-3 relative block mt-4 lg:inline-block lg:mt-0 text-white mr-4 border rounded-lg',
         logo: "inline-block text-sm px-4 py-2 leading-none border rounded border-white border-transparent text-teal-500 bg-white mt-4 lg:mt-0",
         navbar: "w-full block flex-grow lg:flex lg:items-center lg:w-auto",
     };
     const normal = {
-        nav: 'block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 visited:text-purple-600',
+        nav: 'p-3 relative block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4',
         logo: "inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0",
         navbar: "w-full hidden flex-grow lg:flex lg:items-center lg:w-auto"
     };
@@ -86,6 +86,7 @@ export default function Nav() {
                                 to='/shop-react/shopcart'
                                 className={path === '/shop-react/shopcart' ? active.nav : normal.nav}>
                                 ShopCart
+                                {carts.carts && carts.carts.length > 0 && <span className='absolute  bottom-0 right-0 w-5 h-5 flex items-center justify-center text-red-500 border border-red-500 rounded-full'>{carts.carts.length}</span>}
                             </Link>
                         )
                     }

@@ -6,7 +6,7 @@ import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 export default function Product({ data }) {
     const history = useHistory();
     const alert = useAlert();
-    const { dispatch } = useContext(ShopContext);
+    const { cartDispatch } = useContext(ShopContext);
 
     async function handleAddToCart(id) {
         const product = { data: { product_id: id, qty: 1 } };
@@ -24,7 +24,7 @@ export default function Product({ data }) {
             response = await fetch(Url);
             const datas = await response.json();
             if (datas.success) {
-                dispatch({ type: "UPDATE_CART", cart: datas.data })
+                cartDispatch({ type: "UPDATE_CART", cart: datas.data })
             }
         }
     }

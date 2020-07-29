@@ -7,10 +7,10 @@ import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Shop() {
     const { products, productDispatch } = useContext(ShopContext);
-
     const [loading, setLoading] = useState(true);
     const [dePage, setDePage] = useState(1)
     const [pages, setPages] = useState(null)
+    const [categ, setCateg] = useState('all');
 
     useEffect(() => {
         fetchProducts(dePage);
@@ -27,7 +27,14 @@ export default function Shop() {
             setLoading(false);
             setPages(pagination.total_pages)
         }
+    }
 
+    function handleCategory(items, text) {
+        if (text === 'all') {
+            return items
+        } else {
+            return items.filter(item => item.category === text)
+        }
     }
 
     if (loading) {
@@ -37,16 +44,35 @@ export default function Shop() {
     if (!products) {
         return <div> error 404</div>
     }
+
+    const style = {
+        active: 'mr-2 bg-white w-16 text-teal-600 text-white font-bold py-1 px-2 rounded-full',
+        normal: 'mr-2 bg-teal-500 w-16 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-full',
+    }
     const filterProducts = products.filter(data => data.is_enabled === 1);
+    const categorys = products.map(product => product.category).filter((product, i, a) => a.indexOf(product) === i);
     return (
-        <ul className="container flex my-2 flex-wrap">
-            {
-                filterProducts.length > 0 ? filterProducts.map(data =>
-                    <ShopProduct data={data} key={data.id} />
-                ) : (
-                        <div>現在還沒有商品喲~</div>)
-            }
-            <Pages dePage={dePage} setDePage={setDePage} num={pages} />
-        </ul>
+        <>
+            <div>
+                <button
+                    onClick={() => setCateg('all')}
+                    className={categ === 'all' ? style.active : style.normal}>全部</button>
+                {categorys && categorys.map((category, i) =>
+                    <button
+                        onClick={() => setCateg(category)}
+                        key={i}
+                        className={categ === category ? style.active : style.normal}>{category}</button>
+                )}
+            </div>
+            <ul className="container flex my-2 flex-wrap">
+                {
+                    filterProducts.length > 0 ? handleCategory(filterProducts, categ).map(data =>
+                        <ShopProduct data={data} key={data.id} />
+                    ) : (
+                            <div>現在還沒有商品喲~</div>)
+                }
+                <Pages dePage={dePage} setDePage={setDePage} num={pages} />
+            </ul>
+        </>
     )
 }

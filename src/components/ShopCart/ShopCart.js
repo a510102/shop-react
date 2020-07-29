@@ -23,7 +23,7 @@ export default function ShopCart() {
         const response = await fetch(Url);
         const datas = await response.json();
         if (datas.success) {
-            cartDispatch({ type: "UPDATE_CART", cart: datas.data })
+            cartDispatch({ type: "UPDATE_CART", cart: datas.data });
             setLoading(false);
         }
     }
@@ -70,7 +70,7 @@ export default function ShopCart() {
                 !loading && (
                     <ul className='w-full'>
                         {
-                            !carts.carts.length ? <h3>nothings</h3> : (
+                            !carts.carts.length ? <h3 className='text-4xl my-4 text-center'>nothings</h3> : (
                                 <>
                                     {carts.carts.map((cart, i) => {
                                         return (

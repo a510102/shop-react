@@ -8,7 +8,7 @@ export default function ProductSelf() {
   const { id } = useParams();
   const history = useHistory();
   const alert = useAlert();
-  const { dispatch } = useContext(ShopContext);
+  const { cartDispatch } = useContext(ShopContext);
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
 
@@ -33,7 +33,7 @@ export default function ProductSelf() {
       response = await fetch(Url);
       const datas = await response.json();
       if (datas.success) {
-        dispatch({ type: "UPDATE_CART", cart: datas.data })
+        cartDispatch({ type: "UPDATE_CART", cart: datas.data })
       }
     } else {
       alert.error(message)
@@ -59,7 +59,7 @@ export default function ProductSelf() {
     const { title, category, content, origin_price, price, description, unit, imageUrl } = product;
     return (
       <div className='container w-ful sm:flex'>
-        <img className='lg:h-auto w-full sm:w-1/2 md:w-1/3 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden' src={imageUrl} alt='product-image' />
+        <img className='lg:h-auto w-full sm:w-1/2 md:w-1/3 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden' src={imageUrl} alt='food' />
         <div className='w-full sm:w-1/2 md:w-2/3 md:flex sm:ml-2'>
           <div className='w-full lg:w-1/2 mb-6 md:mb-0'>
             <h2 className='text-3xl font-medium mb-3'>{category}: {title}</h2>
