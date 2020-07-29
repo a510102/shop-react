@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import Loading from './Loading/Loading';
+import { ShopContext } from '../contexts/shopCartContext/ShopCartContext';
 
-export default function Login({ setAuth }) {
+export default function Login() {
   const history = useHistory();
   const alert = useAlert();
+  const { userDispatch } = useContext(ShopContext);
 
   const [user, setUser] = useState({
     username: '',
@@ -42,7 +44,7 @@ export default function Login({ setAuth }) {
       console.log(result)
       if (result.success) {
         setLoading(false);
-        setAuth(true);
+        userDispatch({ type: 'LOGO_IN' });
         history.push('/shop-react/products');
       } else {
         setLoading(false);

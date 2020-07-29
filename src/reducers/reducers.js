@@ -4,7 +4,9 @@ import {
   UPDATE_CART,
   UPDATE_PRICE,
   CHANGE_CATEGORY,
-  UPDATE_PRODUCT
+  UPDATE_PRODUCT,
+  LOG_OUT,
+  LOGO_IN,
 } from './actiontype'
 
 
@@ -37,4 +39,15 @@ const productReducer = (products, action) => {
   }
 };
 
-export { useImmerReducer, cartReducer, productReducer };
+const userReducer = (user, action) => {
+  switch (action.type) {
+    case LOGO_IN:
+      return { ...user, auth: true };
+    case LOG_OUT:
+      return { ...user, auth: false };
+    default:
+      return user;
+  }
+}
+
+export { useImmerReducer, cartReducer, productReducer, userReducer };

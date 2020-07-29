@@ -6,11 +6,21 @@ import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import Nav from '../components/Nav/Nav';
 import Router from '../router/Router';
+import { ShopContext } from '../contexts/shopCartContext/ShopCartContext';
+import {
+  useImmerReducer,
+  cartReducer,
+  productReducer,
+  userReducer
+} from '../reducers/reducers'
 
 
 
 export default function App() {
-  const [auth, setAuth] = useState(true);
+  const [carts, cartDispatch] = useImmerReducer(cartReducer, []);
+  const [products, productDispatch] = useImmerReducer(productReducer, []);
+  const [user, userDispatch] = useImmerReducer(userReducer, { auth: false });
+
 
   const options = {
     position: 'top center',
@@ -21,16 +31,14 @@ export default function App() {
 
   return (
     <div className="container mx-auto px-3">
-      <BrowserRouter>
-        <Nav
-          setAuth={setAuth}
-          auth={auth} />
-        <AlertProvider template={AlertTemplate} {...options}>
-          <Router
-            setAuth={setAuth}
-            auth={auth} />
-        </AlertProvider>
-      </BrowserRouter>
+      <ShopContext.Provider value={{ carts, products, user, cartDispatch, productDispatch, userDispatch }}>
+        <BrowserRouter>
+          <Nav />
+          <AlertProvider template={AlertTemplate} {...options}>
+            <Router />
+          </AlertProvider>
+        </BrowserRouter>
+      </ShopContext.Provider>
     </div>
   );
 }

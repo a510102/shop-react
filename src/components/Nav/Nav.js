@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
-export default function Nav({ auth, setAuth }) {
+export default function Nav() {
     let history = useHistory();
     const path = useLocation().pathname;
-
+    const { user, userDispatch } = useContext(ShopContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = async () => {
@@ -12,7 +13,7 @@ export default function Nav({ auth, setAuth }) {
         const response = await fetch(Url, { method: "POST" });
         const result = await response.json();
         if (result.success) {
-            setAuth(false);
+            userDispatch({ type: 'LOG_OUT' })
             history.replace('/shop-react/home');
         }
     }
@@ -40,7 +41,7 @@ export default function Nav({ auth, setAuth }) {
             <div className={isOpen ? active.navbar : normal.navbar}>
                 <div className="text-sm lg:flex-grow">
                     {
-                        auth ? (
+                        user.auth ? (
                             <>
                                 <Link
                                     to='/shop-react/products'
@@ -80,7 +81,7 @@ export default function Nav({ auth, setAuth }) {
                         Shop
                         </Link>
                     {
-                        !auth && (
+                        !user.auth && (
                             <Link
                                 to='/shop-react/shopcart'
                                 className={path === '/shop-react/shopcart' ? active.nav : normal.nav}>
@@ -91,7 +92,7 @@ export default function Nav({ auth, setAuth }) {
                 </div>
                 <div>
                     {
-                        auth ? (
+                        user.auth ? (
                             <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
                                 <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
                     }
