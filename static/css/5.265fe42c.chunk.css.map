@@ -1,0 +1,1 @@
+{"version":3,"sources":["Home.css"],"names":[],"mappings":"AAAA,MACE,2GAAmF,CACnF,qBAAsB,CACtB,uBAA2B,CAC3B,UACF","file":"5.265fe42c.chunk.css","sourcesContent":[".home {\n  background-image: url(\"../img/people-walking-on-street-near-buildings-2339009.jpg\");\n  background-size: cover;\n  background-position: center;\n  opacity: 0.8;\n}\n"]}

@@ -1,2 +1,0 @@
-(this["webpackJsonpshop-react"]=this["webpackJsonpshop-react"]||[]).push([[7],{53:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return r}));var a=n(0),c=n.n(a);function r(){return c.a.createElement("div",{className:"container"},c.a.createElement("h1",null,"About"),c.a.createElement("p",null,"content  ..."))}}}]);
-//# sourceMappingURL=7.03db221e.chunk.js.map

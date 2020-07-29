@@ -1,0 +1,1 @@
+{"version":3,"sources":["About.css"],"names":[],"mappings":"AAAA,OACE,0GAAkF,CAClF,qBAAsB,CACtB,uBAA2B,CAC3B,UACF","file":"3.30e0de7e.chunk.css","sourcesContent":[".about {\n  background-image: url(\"../img/close-up-photo-of-sushi-served-on-table-248444.jpg\");\n  background-size: cover;\n  background-position: center;\n  opacity: 0.8;\n}\n"]}
