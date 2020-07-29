@@ -46,14 +46,14 @@ export default function Shop() {
     }
 
     const style = {
-        active: 'mr-2 bg-white w-16 text-teal-600 text-white font-bold py-1 px-2 rounded-full',
-        normal: 'mr-2 bg-teal-500 w-16 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-full',
+        active: 'm-2 bg-white w-16 text-teal-600 text-white font-bold py-1 px-2 rounded-full',
+        normal: 'm-2 bg-teal-500 w-16 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-full',
     }
     const filterProducts = products.filter(data => data.is_enabled === 1);
     const categorys = products.map(product => product.category).filter((product, i, a) => a.indexOf(product) === i);
     return (
         <>
-            <div>
+            <div className='container'>
                 <button
                     onClick={() => setCateg('all')}
                     className={categ === 'all' ? style.active : style.normal}>全部</button>

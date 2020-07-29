@@ -13,7 +13,7 @@ export default function Nav() {
         const response = await fetch(Url, { method: "POST" });
         const result = await response.json();
         if (result.success) {
-            userDispatch({ type: 'LOG_OUT' })
+            userDispatch({ type: 'LOGO_OUT' })
             history.replace('/shop-react/home');
         }
     }

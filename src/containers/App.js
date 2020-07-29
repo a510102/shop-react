@@ -30,7 +30,7 @@ export default function App() {
   }
 
   return (
-    <div className="container mx-auto px-3">
+    <div className="container mx-auto">
       <ShopContext.Provider value={{ carts, products, user, cartDispatch, productDispatch, userDispatch }}>
         <BrowserRouter>
           <Nav />
