@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/shop-react/static/css/main.c13538b7.chunk.css",
-    "main.js": "/shop-react/static/js/main.cffb09b1.chunk.js",
-    "main.js.map": "/shop-react/static/js/main.cffb09b1.chunk.js.map",
-    "runtime-main.js": "/shop-react/static/js/runtime-main.c37940a9.js",
-    "runtime-main.js.map": "/shop-react/static/js/runtime-main.c37940a9.js.map",
+    "main.js": "/shop-react/static/js/main.ce3b7e11.chunk.js",
+    "main.js.map": "/shop-react/static/js/main.ce3b7e11.chunk.js.map",
+    "runtime-main.js": "/shop-react/static/js/runtime-main.c6583a30.js",
+    "runtime-main.js.map": "/shop-react/static/js/runtime-main.c6583a30.js.map",
     "static/js/2.6200c0ab.chunk.js": "/shop-react/static/js/2.6200c0ab.chunk.js",
     "static/js/2.6200c0ab.chunk.js.map": "/shop-react/static/js/2.6200c0ab.chunk.js.map",
     "static/js/3.3a0bd5d7.chunk.js": "/shop-react/static/js/3.3a0bd5d7.chunk.js",
@@ -13,8 +13,8 @@
     "static/js/4.f053cb38.chunk.js.map": "/shop-react/static/js/4.f053cb38.chunk.js.map",
     "static/js/5.b91176ed.chunk.js": "/shop-react/static/js/5.b91176ed.chunk.js",
     "static/js/5.b91176ed.chunk.js.map": "/shop-react/static/js/5.b91176ed.chunk.js.map",
-    "static/js/6.924b2f4f.chunk.js": "/shop-react/static/js/6.924b2f4f.chunk.js",
-    "static/js/6.924b2f4f.chunk.js.map": "/shop-react/static/js/6.924b2f4f.chunk.js.map",
+    "static/js/6.6f0c8a62.chunk.js": "/shop-react/static/js/6.6f0c8a62.chunk.js",
+    "static/js/6.6f0c8a62.chunk.js.map": "/shop-react/static/js/6.6f0c8a62.chunk.js.map",
     "static/js/7.03db221e.chunk.js": "/shop-react/static/js/7.03db221e.chunk.js",
     "static/js/7.03db221e.chunk.js.map": "/shop-react/static/js/7.03db221e.chunk.js.map",
     "static/js/8.d8ef5ce5.chunk.js": "/shop-react/static/js/8.d8ef5ce5.chunk.js",
@@ -30,15 +30,15 @@
     "static/js/13.dc455334.chunk.js": "/shop-react/static/js/13.dc455334.chunk.js",
     "static/js/13.dc455334.chunk.js.map": "/shop-react/static/js/13.dc455334.chunk.js.map",
     "index.html": "/shop-react/index.html",
-    "precache-manifest.69f30423e288b5959ed5ee975cf09228.js": "/shop-react/precache-manifest.69f30423e288b5959ed5ee975cf09228.js",
+    "precache-manifest.61ee44ab35ec12fbdac97291a33ebc4f.js": "/shop-react/precache-manifest.61ee44ab35ec12fbdac97291a33ebc4f.js",
     "service-worker.js": "/shop-react/service-worker.js",
     "static/css/main.c13538b7.chunk.css.map": "/shop-react/static/css/main.c13538b7.chunk.css.map",
     "static/js/2.6200c0ab.chunk.js.LICENSE.txt": "/shop-react/static/js/2.6200c0ab.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c37940a9.js",
+    "static/js/runtime-main.c6583a30.js",
     "static/js/2.6200c0ab.chunk.js",
     "static/css/main.c13538b7.chunk.css",
-    "static/js/main.cffb09b1.chunk.js"
+    "static/js/main.ce3b7e11.chunk.js"
   ]
 }
