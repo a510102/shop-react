@@ -3,6 +3,7 @@
   font-size: 40px;
   color: palevioletred;
   text-align: center;
+  margin-top: 5em;
 }
 
 .load::after {
