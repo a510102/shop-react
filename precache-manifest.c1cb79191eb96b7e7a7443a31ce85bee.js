@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b50c94a2a3f2c1c971c54ef2b6039c3b",
+    "revision": "c3ea36f88bfa424f4fbf016e1a6873c9",
     "url": "/shop-react/index.html"
   },
   {
-    "revision": "d2500ee4998f2e4111e1",
+    "revision": "64bc9b8959117de6181f",
     "url": "/shop-react/static/css/3.e8f91ea0.chunk.css"
   },
   {
-    "revision": "2f60317e6790a7d0ad6d",
+    "revision": "37714aad9a286967ba22",
     "url": "/shop-react/static/css/5.cbb211f8.chunk.css"
   },
   {
-    "revision": "5694f28b34d0858810b8",
+    "revision": "68f57c8a6acf1f934684",
     "url": "/shop-react/static/css/main.c13538b7.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop-react/static/js/11.7167a560.chunk.js"
   },
   {
-    "revision": "1ee9e68ce14f3a6c7c56",
-    "url": "/shop-react/static/js/12.362eb371.chunk.js"
+    "revision": "a7f9f1daa5876cddb466",
+    "url": "/shop-react/static/js/12.0b29caab.chunk.js"
   },
   {
     "revision": "e523fe1a0075f4066aaa",
@@ -40,16 +40,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop-react/static/js/2.6200c0ab.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d2500ee4998f2e4111e1",
-    "url": "/shop-react/static/js/3.e4703b5d.chunk.js"
+    "revision": "64bc9b8959117de6181f",
+    "url": "/shop-react/static/js/3.b4455dba.chunk.js"
   },
   {
     "revision": "7cd64d595db68acf8911",
     "url": "/shop-react/static/js/4.88411b27.chunk.js"
   },
   {
-    "revision": "2f60317e6790a7d0ad6d",
-    "url": "/shop-react/static/js/5.03b27c68.chunk.js"
+    "revision": "37714aad9a286967ba22",
+    "url": "/shop-react/static/js/5.63d2f2d0.chunk.js"
   },
   {
     "revision": "ed15461be33b60dbdaa2",
@@ -60,20 +60,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop-react/static/js/7.ff739123.chunk.js"
   },
   {
-    "revision": "80e5679164d6a794b9f3",
-    "url": "/shop-react/static/js/8.5969f10b.chunk.js"
+    "revision": "e0b92eccd0f1e172e70c",
+    "url": "/shop-react/static/js/8.b3552433.chunk.js"
   },
   {
     "revision": "82ff4a19b5657e69f29a",
     "url": "/shop-react/static/js/9.6b9a0c83.chunk.js"
   },
   {
-    "revision": "5694f28b34d0858810b8",
-    "url": "/shop-react/static/js/main.34c99e7c.chunk.js"
+    "revision": "68f57c8a6acf1f934684",
+    "url": "/shop-react/static/js/main.2e096814.chunk.js"
   },
   {
-    "revision": "7437336d81e225975397",
-    "url": "/shop-react/static/js/runtime-main.b031885f.js"
+    "revision": "93d719acb5c28f9e7d4c",
+    "url": "/shop-react/static/js/runtime-main.91bbc224.js"
   },
   {
     "revision": "896271d4acbd57344b4dbfd45c950fe5",
