@@ -34,10 +34,10 @@ export default function Product({ data }) {
     }
 
     return (
-        <li id={data.id} className="max-w-full sm:px-1  mb-1 rounded overflow-hidden shadow-lg w-full sm:w-1/2 lg:w-1/3  rounded-lg shadow-md relative">
+        <li id={data.id} className="mb-1 rounded overflow-hidden shadow-lg  rounded-lg shadow-md relative h-auto">
             <img src={data.imageUrl} alt="product" className='w-full h-64 rounded rounded-b-none' />
             <div className='px-5 py-2  inset-x-0 bottom-0 bg-gray-100 w-full  rounded'>
-                <h3 className=' flex justify-between text-teal-700 font-bold text-xl mb-2'>
+                <h3 className=' flex justify-between text-teal-700 font-bold text-sm mb-2'>
                     <span>{data.category} :</span>
                     <span>{data.title}</span>
                 </h3>

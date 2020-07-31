@@ -8,9 +8,11 @@ export default function About() {
   const filterProducts = products.filter((product, i) => i < 3);
   console.log(filterProducts)
   return (
-    <div className='container about h-screen text-center'>
-      <h1 className='text-gray-800 text-2xl'>About</h1>
-      <p className='text-gray-700 text-xl'>content  ...</p>
+    <div className=' about h-screen text-center'>
+      <div className='container mx-auto'>
+        <h1 className='text-gray-800 text-2xl'>About</h1>
+        <p className='text-gray-700 text-xl'>content  ...</p>
+      </div>
     </div>
   )
 }

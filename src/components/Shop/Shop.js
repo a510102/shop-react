@@ -52,8 +52,8 @@ export default function Shop() {
     const filterProducts = products.filter(data => data.is_enabled === 1);
     const categorys = products.map(product => product.category).filter((product, i, a) => a.indexOf(product) === i);
     return (
-        <>
-            <div className='container'>
+        <div className='container mx-auto h-auto min-h-screen'>
+            <div>
                 <button
                     onClick={() => setCateg('all')}
                     className={categ === 'all' ? style.active : style.normal}>全部</button>
@@ -64,7 +64,7 @@ export default function Shop() {
                         className={categ === category ? style.active : style.normal}>{category}</button>
                 )}
             </div>
-            <ul className="container flex my-2 flex-wrap">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 lg:gap-4">
                 {
                     filterProducts.length > 0 ? handleCategory(filterProducts, categ).map(data =>
                         <ShopProduct data={data} key={data.id} />
@@ -73,6 +73,6 @@ export default function Shop() {
                 }
                 <Pages dePage={dePage} setDePage={setDePage} num={pages} />
             </ul>
-        </>
+        </div>
     )
 }

@@ -5,6 +5,7 @@ import {
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import Nav from '../components/Nav/Nav';
+import { Footer } from '../components/Footer';
 import Router from '../router/Router';
 import { ShopContext } from '../contexts/shopCartContext/ShopCartContext';
 import {
@@ -30,7 +31,7 @@ export default function App() {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className=''>
       <ShopContext.Provider value={{ carts, products, user, cartDispatch, productDispatch, userDispatch }}>
         <BrowserRouter>
           <Nav />
@@ -39,6 +40,7 @@ export default function App() {
           </AlertProvider>
         </BrowserRouter>
       </ShopContext.Provider>
+      <Footer />
     </div>
   );
 }

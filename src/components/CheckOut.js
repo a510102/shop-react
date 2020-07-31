@@ -73,7 +73,7 @@ export default function CheckOut() {
   }
 
   const style = {
-    div: 'w-full md:w-1/2 lg:w-1/3  px-3 mt-3 mb-6 md:mb-0',
+    div: 'w-full  px-3 mt-3 mb-6 md:mb-0',
     label: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
     input: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name',
   }
@@ -128,7 +128,7 @@ export default function CheckOut() {
               id='message'
               onChange={handleChange} />
           </section>
-          <section className='w-full md:w-1/2 lg:w-1/3  px-3 mt-3 mb-6 md:mb-0 sm:relative flex justify-end items-end'>
+          <section className='w-full  px-3 mt-3 mb-6 md:mb-0 sm:relative flex justify-end items-end'>
             {
               !pay ? <button onClick={AddOrder} className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded '>完成訂單</button> : <button onClick={handlePay} className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded '>確認結帳</button>
             }

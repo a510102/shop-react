@@ -29,17 +29,17 @@ export default function Nav() {
     };
 
     return (
-        <nav className="flex items-center justify-between flex-wrap bg-teal-400 p-6 shadow-md mb-2 rounded rounded-t-none">
-            <div className="flex items-center flex-shrink-0 text-white mr-6">
-                <span className="font-semibold text-3xl tracking-tight">Jay's Shop</span>
-            </div>
-            <div className="block lg:hidden" onClick={() => { setIsOpen(!isOpen) }}>
-                <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
-                </button>
-            </div>
-            <div className={isOpen ? active.navbar : normal.navbar}>
-                <div className="text-sm lg:flex-grow">
+        <nav className=" bg-teal-400 p-6 shadow-md rounded rounded-t-none">
+            <div className='container mx-auto flex items-center justify-between flex-wrap'>
+                <div className="flex items-center flex-shrink-0 text-white mr-6">
+                    <span className="font-semibold text-3xl tracking-tight">Jay's Shop</span>
+                </div>
+                <div className="block lg:hidden" onClick={() => { setIsOpen(!isOpen) }}>
+                    <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                        <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
+                    </button>
+                </div>
+                <div className={isOpen ? active.navbar : normal.navbar}><div className="text-sm lg:flex-grow">
                     {
                         user.auth ? (
                             <>
@@ -91,12 +91,13 @@ export default function Nav() {
                         )
                     }
                 </div>
-                <div>
-                    {
-                        user.auth ? (
-                            <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
-                                <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
-                    }
+                    <div>
+                        {
+                            user.auth ? (
+                                <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
+                                    <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
