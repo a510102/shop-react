@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/shop-react/static/css/main.e481444a.chunk.css",
+    "main.css": "/shop-react/static/css/main.27657fe1.chunk.css",
     "main.js": "/shop-react/static/js/main.9a87aa55.chunk.js",
     "main.js.map": "/shop-react/static/js/main.9a87aa55.chunk.js.map",
-    "runtime-main.js": "/shop-react/static/js/runtime-main.601796ad.js",
-    "runtime-main.js.map": "/shop-react/static/js/runtime-main.601796ad.js.map",
+    "runtime-main.js": "/shop-react/static/js/runtime-main.61f56a8b.js",
+    "runtime-main.js.map": "/shop-react/static/js/runtime-main.61f56a8b.js.map",
     "static/js/2.c37980c1.chunk.js": "/shop-react/static/js/2.c37980c1.chunk.js",
     "static/js/2.c37980c1.chunk.js.map": "/shop-react/static/js/2.c37980c1.chunk.js.map",
     "static/css/3.09742b9f.chunk.css": "/shop-react/static/css/3.09742b9f.chunk.css",
@@ -19,8 +19,8 @@
     "static/js/6.61516be0.chunk.js.map": "/shop-react/static/js/6.61516be0.chunk.js.map",
     "static/js/7.a30ae210.chunk.js": "/shop-react/static/js/7.a30ae210.chunk.js",
     "static/js/7.a30ae210.chunk.js.map": "/shop-react/static/js/7.a30ae210.chunk.js.map",
-    "static/js/8.8a5a4de1.chunk.js": "/shop-react/static/js/8.8a5a4de1.chunk.js",
-    "static/js/8.8a5a4de1.chunk.js.map": "/shop-react/static/js/8.8a5a4de1.chunk.js.map",
+    "static/js/8.9ead34e7.chunk.js": "/shop-react/static/js/8.9ead34e7.chunk.js",
+    "static/js/8.9ead34e7.chunk.js.map": "/shop-react/static/js/8.9ead34e7.chunk.js.map",
     "static/js/9.188b7058.chunk.js": "/shop-react/static/js/9.188b7058.chunk.js",
     "static/js/9.188b7058.chunk.js.map": "/shop-react/static/js/9.188b7058.chunk.js.map",
     "static/js/10.ca84c25d.chunk.js": "/shop-react/static/js/10.ca84c25d.chunk.js",
@@ -32,19 +32,19 @@
     "static/js/13.8c7504c9.chunk.js": "/shop-react/static/js/13.8c7504c9.chunk.js",
     "static/js/13.8c7504c9.chunk.js.map": "/shop-react/static/js/13.8c7504c9.chunk.js.map",
     "index.html": "/shop-react/index.html",
-    "precache-manifest.510f57aa054ad8c4c2ba3cdb980eedcb.js": "/shop-react/precache-manifest.510f57aa054ad8c4c2ba3cdb980eedcb.js",
+    "precache-manifest.fa6ef51268cfbecc3eaef3b0389b1b19.js": "/shop-react/precache-manifest.fa6ef51268cfbecc3eaef3b0389b1b19.js",
     "service-worker.js": "/shop-react/service-worker.js",
     "static/css/3.09742b9f.chunk.css.map": "/shop-react/static/css/3.09742b9f.chunk.css.map",
     "static/css/5.d5f746bc.chunk.css.map": "/shop-react/static/css/5.d5f746bc.chunk.css.map",
-    "static/css/main.e481444a.chunk.css.map": "/shop-react/static/css/main.e481444a.chunk.css.map",
+    "static/css/main.27657fe1.chunk.css.map": "/shop-react/static/css/main.27657fe1.chunk.css.map",
     "static/js/2.c37980c1.chunk.js.LICENSE.txt": "/shop-react/static/js/2.c37980c1.chunk.js.LICENSE.txt",
     "static/media/About.css": "/shop-react/static/media/close-up-photo-of-sushi-served-on-table-248444.896271d4.jpg",
     "static/media/Home.css": "/shop-react/static/media/sliced-sushi-on-tray-1028429 (1).39eb5877.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.601796ad.js",
+    "static/js/runtime-main.61f56a8b.js",
     "static/js/2.c37980c1.chunk.js",
-    "static/css/main.e481444a.chunk.css",
+    "static/css/main.27657fe1.chunk.css",
     "static/js/main.9a87aa55.chunk.js"
   ]
 }
