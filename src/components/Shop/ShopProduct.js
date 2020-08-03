@@ -35,7 +35,9 @@ export default function Product({ data }) {
     const { id, imageUrl, category, title, price, origin_price } = data;
     return (
         <li id={id} className="mb-1 rounded overflow-hidden shadow-lg  rounded-lg shadow-md relative h-auto">
-            <img src={imageUrl} alt="product" className='w-full h-56 rounded rounded-b-none' />
+            <div className='relative w-full h-48 mx-auto bg-gray-200'>
+                <img src={imageUrl} alt="product" className='absolute max-h-full max-w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' />
+            </div>
             <div className='px-5 py-2  inset-x-0 bottom-0 bg-gray-100 w-full  rounded'>
                 <h3 className=' flex justify-between text-teal-700 font-bold text-sm mb-2'>
                     <span>{category} :</span>
