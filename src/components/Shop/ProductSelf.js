@@ -13,9 +13,17 @@ export default function ProductSelf() {
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
+    async function fetchProduct() {
+      const Url = `https://vue-course-api.hexschool.io/api/jay/product/${id}`;
+      const response = await fetch(Url);
+      const result = await response.json();
+      if (result.success) {
+        setProduct(result.product);
+      }
+    }
     fetchProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    return () => setProduct(null);
+  }, [id])
 
   async function addProductToCart(id, qty) {
     const product = { product_id: id, qty }
@@ -41,15 +49,6 @@ export default function ProductSelf() {
 
   }
 
-  async function fetchProduct() {
-    const Url = `https://vue-course-api.hexschool.io/api/jay/product/${id}`;
-    const response = await fetch(Url);
-    const result = await response.json();
-    if (result.success) {
-      setProduct(result.product);
-    }
-  }
-
   function handleChange(event) {
     const { value } = event.target;
     setQty(value);
@@ -60,7 +59,7 @@ export default function ProductSelf() {
     return (
       <div className='container w-ful flex flex-col mx-auto'>
         <div className='max-w-lg mx-auto'>
-          <img className='' src={imageUrl} alt='food' className='w-full' />
+          <img src={imageUrl} alt='food' className='w-full' />
         </div>
         <div className='flex flex-wrap max-w-lg w-full mx-auto'>
           <div className='w-full md:w-1/2 mb-6 md:mb-0'>

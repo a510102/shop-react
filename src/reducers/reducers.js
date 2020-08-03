@@ -1,18 +1,10 @@
-import React from 'react';
-import { produce } from "immer";
 import {
   UPDATE_CART,
   UPDATE_PRICE,
-  CHANGE_CATEGORY,
   UPDATE_PRODUCT,
   LOG_OUT,
   LOGO_IN,
 } from './actiontype'
-
-
-function useImmerReducer(reducer, initialState) {
-  return React.useReducer(produce(reducer), initialState);
-};
 
 const initialState = {
   carts: {},
@@ -37,7 +29,6 @@ const cartstReducer = (state = initialState, action) => {
   }
 };
 
-
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_PRODUCT:
@@ -46,7 +37,6 @@ const productsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {

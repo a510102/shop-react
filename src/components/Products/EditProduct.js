@@ -36,7 +36,11 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
     div: 'w-full md:w-1/2 lg:w-1/3  px-3 mt-3 mb-6 md:mb-0',
     label: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2',
     input: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name',
-  }
+  };
+
+
+  const { div, input, label } = style;
+  const { category, title, content, description, imageUrl, origin_price, price, unit, is_enabled } = product;
   return (
     <>
       <button
@@ -46,97 +50,97 @@ export default function EditProduct({ open, setOpen, product, handleChange, upda
         open ? (
           <div className='w-full'>
             <div className='flex flex-wrap mb-6'>
-              <section className={style.div}>
-                <label className={style.label} htmlFor='category'>類別:</label>
+              <section className={div}>
+                <label className={label} htmlFor='category'>類別:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='category'
                   name='category'
-                  value={product.category || ''}
+                  value={category || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label className={style.label} htmlFor='title'>商品:</label>
+              <section className={div}>
+                <label className={label} htmlFor='title'>商品:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='title'
                   name='title'
-                  value={product.title || ''}
+                  value={title || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label htmlFor='content' className={style.label}>內容:</label>
+              <section className={div}>
+                <label htmlFor='content' className={label}>內容:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='content'
                   name='content'
-                  value={product.content || ''}
+                  value={content || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label htmlFor='description' className={style.label}>描述:</label>
+              <section className={div}>
+                <label htmlFor='description' className={label}>描述:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='description'
                   name='description'
-                  value={product.description || ''}
+                  value={description || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label htmlFor="image" className={style.label}>輸入圖片網址</label>
+              <section className={div}>
+                <label htmlFor="image" className={label}>輸入圖片網址</label>
                 <input
                   type="text"
-                  className={style.input}
+                  className={input}
                   onChange={handleChange}
-                  value={product.imageUrl || ''}
+                  value={imageUrl || ''}
                   id="image"
                   name='imageUrl'
                   placeholder="請輸入圖片連結" />
               </section>
-              <section className={style.div}>
-                <label htmlFor="customFile" className={style.label}>或 上傳圖片:</label>
+              <section className={div}>
+                <label htmlFor="customFile" className={label}>或 上傳圖片:</label>
                 <input
                   type="file"
                   id="customFile"
-                  className={style.input}
+                  className={input}
                   ref={inputEl}
                   onChange={uploadFild} />
                 {
                   product.imageUrl && <img style={{ width: '200px', height: '200px' }} src={product.imageUrl} alt='proPic' />
                 }
               </section>
-              <section className={style.div}>
-                <label htmlFor='origin_price' className={style.label}>原價:</label>
+              <section className={div}>
+                <label htmlFor='origin_price' className={label}>原價:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='origin_price'
                   name='origin_price'
-                  value={product.origin_price || ''}
+                  value={origin_price || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label htmlFor='price' className={style.label}>特價:</label>
+              <section className={div}>
+                <label htmlFor='price' className={label}>特價:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='price'
                   name='price'
-                  value={product.price || ''}
+                  value={price || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label htmlFor='unit' className={style.label}>單位:</label>
+              <section className={div}>
+                <label htmlFor='unit' className={label}>單位:</label>
                 <input
-                  className={style.input}
+                  className={input}
                   id='unit'
                   name='unit'
-                  value={product.unit || ''}
+                  value={unit || ''}
                   onChange={handleChange} />
               </section>
-              <section className={style.div}>
-                <label className={style.label} htmlFor='is_enabled'>啟用:</label>
+              <section className={div}>
+                <label className={label} htmlFor='is_enabled'>啟用:</label>
                 <input
                   type='checkbox'
-                  checked={(product.is_enabled === 1 ? true : false) || ''}
+                  checked={(is_enabled === 1 ? true : false) || ''}
                   onChange={handleChange}
                   id='is_enabled'
                   name='is_enabled' />

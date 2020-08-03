@@ -29,25 +29,25 @@ export default function Product({ data }) {
         }
     }
 
-    function handlePathToProduct(id) {
-        history.push(`/shop-react/shop/${id}`)
+    function handlePathToProduct(number) {
+        history.push(`/shop-react/shop/${number}`)
     }
-
+    const { id, imageUrl, category, title, price, origin_price } = data;
     return (
-        <li id={data.id} className="mb-1 rounded overflow-hidden shadow-lg  rounded-lg shadow-md relative h-auto">
-            <img src={data.imageUrl} alt="product" className='w-full h-56 rounded rounded-b-none' />
+        <li id={id} className="mb-1 rounded overflow-hidden shadow-lg  rounded-lg shadow-md relative h-auto">
+            <img src={imageUrl} alt="product" className='w-full h-56 rounded rounded-b-none' />
             <div className='px-5 py-2  inset-x-0 bottom-0 bg-gray-100 w-full  rounded'>
                 <h3 className=' flex justify-between text-teal-700 font-bold text-sm mb-2'>
-                    <span>{data.category} :</span>
-                    <span>{data.title}</span>
+                    <span>{category} :</span>
+                    <span>{title}</span>
                 </h3>
                 <p className='flex justify-between text-teal-700 text-base'>
-                    <span>原價: {data.origin_price}元</span>
-                    <span>{data.price && `特價: ${data.price}元 `}</span>
+                    <span>原價: {origin_price}元</span>
+                    <span>{price && `特價: ${price}元 `}</span>
                 </p>
                 <div className='flex items-center justify-between mt-2'>
-                    <button onClick={() => handleAddToCart(data.id)} className="bg-green-400 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-full">ADD</button>
-                    <button onClick={() => handlePathToProduct(data.id)} className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-full">詳細內容</button>
+                    <button onClick={() => handleAddToCart(id)} className="bg-green-400 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-full">ADD</button>
+                    <button onClick={() => handlePathToProduct(id)} className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-full">詳細內容</button>
                 </div>
             </div>
         </li>

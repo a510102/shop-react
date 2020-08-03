@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react'
+import React, { Suspense } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import ErrorBoundary from '../components/ErrorBoundary';
 import Loading from '../components/Loading/Loading';
