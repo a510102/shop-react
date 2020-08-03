@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
+import { useDispatch } from 'react-redux';
 import Loading from '../Loading/Loading';
 
 export default function ProductSelf() {
   const { id } = useParams();
   const history = useHistory();
   const alert = useAlert();
-  const { cartDispatch } = useContext(ShopContext);
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
 
@@ -33,7 +33,7 @@ export default function ProductSelf() {
       response = await fetch(Url);
       const datas = await response.json();
       if (datas.success) {
-        cartDispatch({ type: "UPDATE_CART", cart: datas.data })
+        dispatch({ type: "UPDATE_CART", cart: datas.data })
       }
     } else {
       alert.error(message)
@@ -58,10 +58,12 @@ export default function ProductSelf() {
   if (product) {
     const { title, category, content, origin_price, price, description, unit, imageUrl } = product;
     return (
-      <div className='container w-ful sm:flex'>
-        <img className='lg:h-auto w-full sm:w-1/2 md:w-1/3 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden' src={imageUrl} alt='food' />
-        <div className='w-full sm:w-1/2 md:w-2/3 md:flex sm:ml-2'>
-          <div className='w-full lg:w-1/2 mb-6 md:mb-0'>
+      <div className='container w-ful flex flex-col mx-auto'>
+        <div className='max-w-lg mx-auto'>
+          <img className='' src={imageUrl} alt='food' className='w-full' />
+        </div>
+        <div className='flex flex-wrap max-w-lg w-full mx-auto'>
+          <div className='w-full md:w-1/2 mb-6 md:mb-0'>
             <h2 className='text-3xl font-medium mb-3'>{category}: {title}</h2>
             <p className='text-xl font-medium mb-1'>內容:</p>
             <p className=' mb-3'>{content}</p>
@@ -70,7 +72,7 @@ export default function ProductSelf() {
             <p className=' mb-3'>原價:{origin_price}元 / {unit}</p>
             {price && <p className=' mb-3'>特價:{price} 元 / {unit}</p>}
           </div>
-          <div className="w-full lg:w-1/2 mb-6 md:mb-0">
+          <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <div className='relative'>
               <label className="block  tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="qty">
                 選擇數量:

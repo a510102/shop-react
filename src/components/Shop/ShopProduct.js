@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
+import { useDispatch } from 'react-redux';
 
 export default function Product({ data }) {
     const history = useHistory();
     const alert = useAlert();
-    const { cartDispatch } = useContext(ShopContext);
+    const dispatch = useDispatch();
 
     async function handleAddToCart(id) {
         const product = { data: { product_id: id, qty: 1 } };
@@ -24,7 +24,7 @@ export default function Product({ data }) {
             response = await fetch(Url);
             const datas = await response.json();
             if (datas.success) {
-                cartDispatch({ type: "UPDATE_CART", cart: datas.data })
+                dispatch({ type: "UPDATE_CART", cart: datas.data })
             }
         }
     }
@@ -35,7 +35,7 @@ export default function Product({ data }) {
 
     return (
         <li id={data.id} className="mb-1 rounded overflow-hidden shadow-lg  rounded-lg shadow-md relative h-auto">
-            <img src={data.imageUrl} alt="product" className='w-full h-64 rounded rounded-b-none' />
+            <img src={data.imageUrl} alt="product" className='w-full h-56 rounded rounded-b-none' />
             <div className='px-5 py-2  inset-x-0 bottom-0 bg-gray-100 w-full  rounded'>
                 <h3 className=' flex justify-between text-teal-700 font-bold text-sm mb-2'>
                     <span>{data.category} :</span>

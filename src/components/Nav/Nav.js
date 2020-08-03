@@ -1,11 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Nav() {
     let history = useHistory();
     const path = useLocation().pathname;
-    const { carts, user, userDispatch } = useContext(ShopContext);
+    const carts = useSelector(state => state.cartsState.carts);
+    const auth = useSelector(store => store.authState.auth);
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = async () => {
@@ -13,7 +16,7 @@ export default function Nav() {
         const response = await fetch(Url, { method: "POST" });
         const result = await response.json();
         if (result.success) {
-            userDispatch({ type: 'LOGO_OUT' })
+            dispatch({ type: 'LOGO_OUT' })
             history.replace('/shop-react/home');
         }
     }
@@ -41,7 +44,7 @@ export default function Nav() {
                 </div>
                 <div className={isOpen ? active.navbar : normal.navbar}><div className="text-sm lg:flex-grow">
                     {
-                        user.auth ? (
+                        auth ? (
                             <>
                                 <Link
                                     to='/shop-react/products'
@@ -81,7 +84,7 @@ export default function Nav() {
                         Shop
                         </Link>
                     {
-                        !user.auth && (
+                        !auth && (
                             <Link
                                 to='/shop-react/shopcart'
                                 className={path === '/shop-react/shopcart' ? active.nav : normal.nav}>
@@ -93,7 +96,7 @@ export default function Nav() {
                 </div>
                     <div>
                         {
-                            user.auth ? (
+                            auth ? (
                                 <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
                                     <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
                         }

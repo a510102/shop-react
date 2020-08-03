@@ -7,22 +7,12 @@ import AlertTemplate from 'react-alert-template-basic';
 import Nav from '../components/Nav/Nav';
 import { Footer } from '../components/Footer';
 import Router from '../router/Router';
-import { ShopContext } from '../contexts/shopCartContext/ShopCartContext';
-import {
-  useImmerReducer,
-  cartReducer,
-  productReducer,
-  userReducer
-} from '../reducers/reducers'
+
+import './App.css';
 
 
 
 export default function App() {
-  const [carts, cartDispatch] = useImmerReducer(cartReducer, []);
-  const [products, productDispatch] = useImmerReducer(productReducer, []);
-  const [user, userDispatch] = useImmerReducer(userReducer, { auth: false });
-
-
   const options = {
     position: 'top center',
     timeout: 3000,
@@ -31,15 +21,13 @@ export default function App() {
   }
 
   return (
-    <div className=''>
-      <ShopContext.Provider value={{ carts, products, user, cartDispatch, productDispatch, userDispatch }}>
-        <BrowserRouter>
-          <Nav />
-          <AlertProvider template={AlertTemplate} {...options}>
-            <Router />
-          </AlertProvider>
-        </BrowserRouter>
-      </ShopContext.Provider>
+    <div className='App'>
+      <BrowserRouter>
+        <Nav />
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Router />
+        </AlertProvider>
+      </BrowserRouter>
       <Footer />
     </div>
   );

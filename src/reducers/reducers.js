@@ -14,40 +14,49 @@ function useImmerReducer(reducer, initialState) {
   return React.useReducer(produce(reducer), initialState);
 };
 
-const cartReducer = (carts, action) => {
+const initialState = {
+  carts: {},
+  products: [],
+  auth: false
+}
+
+const cartstReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_CART:
-      return carts = action.cart;
+      return { ...state, carts: { ...action.cart } };
     case UPDATE_PRICE:
       return {
-        ...carts,
-        final_total: action.price
+        ...state,
+        carts: {
+          ...state.carts,
+          final_total: action.price
+        }
       };
     default:
-      return carts;
+      return state;
   }
 };
 
-const productReducer = (products, action) => {
+
+const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_PRODUCT:
-      return products = action.product;
-    case CHANGE_CATEGORY:
-      return products.filter(product => product.category === action.category);
+      return { ...state, products: [...action.product] };
     default:
-      return products;
+      return state;
   }
 };
 
-const userReducer = (user, action) => {
+
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGO_IN:
-      return { ...user, auth: true };
+      return { ...state, auth: true };
     case LOG_OUT:
-      return { ...user, auth: false };
+      return { ...state, auth: false };
     default:
-      return user;
+      return state;
   }
 }
 
-export { useImmerReducer, cartReducer, productReducer, userReducer };
+export { userReducer, cartstReducer, productsReducer };

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useAlert } from 'react-alert'
-import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
+import React, { useState, useEffect } from 'react';
+import { useAlert } from 'react-alert';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import CheckOut from '../CheckOut';
 
 export default function ShopCart() {
     const alert = useAlert();
     const history = useHistory();
-
-    const { carts, cartDispatch } = useContext(ShopContext);
+    const dispatch = useDispatch();
+    const carts = useSelector(store => store.cartsState.carts)
     const [coupon, setCoupon] = useState('');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -23,8 +23,7 @@ export default function ShopCart() {
         const response = await fetch(Url);
         const datas = await response.json();
         if (datas.success) {
-            console.log(datas.data)
-            cartDispatch({ type: "UPDATE_CART", cart: datas.data });
+            dispatch({ type: "UPDATE_CART", cart: datas.data });
             setLoading(false);
         }
     }
@@ -54,7 +53,7 @@ export default function ShopCart() {
         const { success, message } = result;
 
         if (success) {
-            cartDispatch({ type: "UPDATE_PRICE", price: result.data.final_total });
+            dispatch({ type: "UPDATE_PRICE", price: result.data.final_total });
             alert.success(message);
         } else {
             alert.error(message);

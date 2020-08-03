@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import ErrorBoundary from '../components/ErrorBoundary';
 import Loading from '../components/Loading/Loading';
 import PrivateRoute from '../router/PrivateRoute';
-import { ShopContext } from '../contexts/shopCartContext/ShopCartContext';
+import { useSelector } from 'react-redux';
 
 const Login = React.lazy(() => import('../components/Login'));
 const Home = React.lazy(() => import('../components/Home'));
@@ -18,7 +18,7 @@ const ProductSelf = React.lazy(() => import('../components/Shop/ProductSelf'));
 
 
 export default function Router() {
-  const { user } = useContext(ShopContext);
+  const auth = useSelector(store => store.authState.auth);
   return (
     <ErrorBoundary>
       <Suspense fallback={<Loading />}>
@@ -38,16 +38,16 @@ export default function Router() {
           <Route exact path='/shop-react/shop' component={Shop} />
           <Route path='/shop-react/shop/:id' component={ProductSelf} />
           <Route path='/shop-react/shopcart' component={ShopCart} />
-          <PrivateRoute exact path='/shop-react/products' auth={user.auth} component={Products} />
+          <PrivateRoute exact path='/shop-react/products' auth={auth} component={Products} />
           <PrivateRoute
             exact
             path='/shop-react/coupon'
-            auth={user.auth}
+            auth={auth}
             component={CouponsList} />
           <PrivateRoute
             exact
             path='/shop-react/orderList'
-            auth={user.auth}
+            auth={auth}
             component={OrderList} />
           <Route component={NotFound} />
         </Switch>

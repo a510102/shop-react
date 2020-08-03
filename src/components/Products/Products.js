@@ -1,16 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux';
 
 import EditProduct from './EditProduct';
 import BackProduct from './BackProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
-import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Products() {
   const alert = useAlert();
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.productsState.products)
 
-  const { products, productDispatch } = useContext(ShopContext)
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [product, setProduct] = useState({});
@@ -27,7 +28,7 @@ export default function Products() {
     const response = await fetch(Url);
     const data = await response.json();
     if (data.success) {
-      productDispatch({ type: 'UPDATE_PRODUCT', product: data.products })
+      dispatch({ type: 'UPDATE_PRODUCT', product: data.products })
       setLoading(false);
       setPages(data.pagination.total_pages);
     }

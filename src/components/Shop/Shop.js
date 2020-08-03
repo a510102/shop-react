@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 
 import ShopProduct from './ShopProduct';
 import Loading from '../Loading/Loading';
 import Pages from '../Pages';
-import { ShopContext } from '../../contexts/shopCartContext/ShopCartContext';
 
 export default function Shop() {
-    const { products, productDispatch } = useContext(ShopContext);
+    const dispatch = useDispatch();
+    const products = useSelector(store => store.productsState.products);
     const [loading, setLoading] = useState(true);
     const [dePage, setDePage] = useState(1)
     const [pages, setPages] = useState(null)
@@ -23,7 +24,7 @@ export default function Shop() {
         const datas = await response.json();
         const { success, products, pagination } = datas;
         if (success) {
-            productDispatch({ type: "UPDATE_PRODUCT", product: products });
+            dispatch({ type: "UPDATE_PRODUCT", product: products });
             setLoading(false);
             setPages(pagination.total_pages)
         }
