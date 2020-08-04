@@ -15,7 +15,8 @@ export default function Nav() {
         const response = await fetch(Url, { method: "POST" });
         const result = await response.json();
         if (result.success) {
-            dispatch({ type: 'LOGO_OUT' })
+            dispatch({ type: 'LOGO_OUT' });
+            setIsOpen(false);
             history.replace('/shop-react/home');
         }
     }
@@ -47,17 +48,20 @@ export default function Nav() {
                             <>
                                 <Link
                                     to='/shop-react/products'
+                                    onClick={() => { setIsOpen(false) }}
                                     className={path === '/shop-react/products' ? active.nav : normal.nav}>
                                     Products
                                     </Link>
                                 <Link
                                     to='/shop-react/orderList'
+                                    onClick={() => { setIsOpen(false) }}
                                     className={path === '/shop-react/orderList' ? active.nav : normal.nav}>
                                     OrderList
                                     </Link>
 
                                 <Link
                                     to='/shop-react/coupon'
+                                    onClick={() => { setIsOpen(false) }}
                                     className={path === '/shop-react/coupon' ? active.nav : normal.nav}>
                                     Coupon
                                     </Link>
@@ -66,11 +70,13 @@ export default function Nav() {
                                 <>
                                     <Link
                                         to='/shop-react/home'
+                                        onClick={() => { setIsOpen(false) }}
                                         className={path === '/shop-react/home' ? active.nav : normal.nav}>
                                         Home
                                         </Link>
                                     <Link
                                         to='/shop-react/about'
+                                        onClick={() => { setIsOpen(false) }}
                                         className={path === '/shop-react/about' ? active.nav : normal.nav}>
                                         About
                                         </Link>
@@ -79,6 +85,7 @@ export default function Nav() {
                     }
                     <Link
                         to='/shop-react/shop'
+                        onClick={() => { setIsOpen(false) }}
                         className={path === '/shop-react/shop' ? active.nav : normal.nav}>
                         Shop
                         </Link>
@@ -86,6 +93,7 @@ export default function Nav() {
                         !auth && (
                             <Link
                                 to='/shop-react/shopcart'
+                                onClick={() => { setIsOpen(false) }}
                                 className={path === '/shop-react/shopcart' ? active.nav : normal.nav}>
                                 ShopCart
                                 {carts.carts && carts.carts.length > 0 && <span className='absolute  bottom-0 right-0 w-5 h-5 flex items-center justify-center text-red-500 border border-red-500 rounded-full'>{carts.carts.length}</span>}
@@ -97,7 +105,7 @@ export default function Nav() {
                         {
                             auth ? (
                                 <Link to='/shop-react/home' onClick={handleLogout} className={normal.logo}>LogOut</Link>) : (
-                                    <Link to='/shop-react/login' className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
+                                    <Link to='/shop-react/login' onClick={() => { setIsOpen(false) }} className={path === '/shop-react/login' ? active.logo : normal.logo}>Login</Link>)
                         }
                     </div>
                 </div>

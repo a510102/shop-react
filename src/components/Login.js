@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { useDispatch } from 'react-redux';
+import { useInputValue } from '../hooks/useInputValue';
 
 import Loading from './Loading/Loading';
 
@@ -9,30 +10,20 @@ export default function Login() {
   const history = useHistory();
   const alert = useAlert();
   const dispatch = useDispatch();
-
-  const [user, setUser] = useState({
-    username: '',
-    password: ''
-  });
+  const { username } = useInputValue('');
+  const { password } = useInputValue('');
 
   const [loading, setLoading] = useState(false);
-
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setUser(preUser => {
-      return {
-        ...preUser,
-        [name]: value
-      }
-    });
-  }
 
   async function handleLogin(event) {
     event.preventDefault();
 
-    const { username, password } = user;
-    if (username && password) {
+    const user = {
+      username: username.value,
+      password: password.value
+    }
+
+    if (username.value && password.value) {
       setLoading(true);
       const Url = 'https://vue-course-api.hexschool.io/admin/signin';
       const response = await fetch(Url, {
@@ -52,9 +43,9 @@ export default function Login() {
         history.replace('/shop-react/login');
         alert.error(message);
       }
-    } else if (!username && password) {
+    } else if (!username.value && password.value) {
       alert.show('請輸入E-mail');
-    } else if (!password && username) {
+    } else if (!password.value && username.value) {
       alert.show('請輸入Password')
     } else {
       alert.show('請輸入Email 跟Password')
@@ -78,8 +69,7 @@ export default function Login() {
             type="email"
             placeholder='email'
             name='username'
-            onChange={handleChange}
-            value={user.username} />
+            {...username} />
         </section>
         <section className='mb-8'>
           <label className='block text-teal-500 text-sm font-bold mb-2'> Password :</label>
@@ -88,8 +78,7 @@ export default function Login() {
             type="current-password"
             placeholder='password'
             name="password"
-            onChange={handleChange}
-            value={user.password} />
+            {...password} />
         </section>
         <section className='flex items-center justify-between'>
           <button className='bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>Submit</button>

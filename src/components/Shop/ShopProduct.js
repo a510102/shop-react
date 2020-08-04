@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { useDispatch } from 'react-redux';
 
-export default function Product({ data }) {
+const ShopProduct = React.memo(({ data }) => {
     const history = useHistory();
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -54,4 +54,6 @@ export default function Product({ data }) {
             </div>
         </li>
     )
-}
+})
+
+export default ShopProduct;
