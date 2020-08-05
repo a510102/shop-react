@@ -1,0 +1,2 @@
+(this["webpackJsonpshop-react"]=this["webpackJsonpshop-react"]||[]).push([[3],{59:function(e,t,a){},62:function(e,t,a){"use strict";a.r(t),a.d(t,"default",(function(){return r}));var n=a(0),c=a.n(n);a(59);function r(){return c.a.createElement("div",{className:" about h-screen text-center"},c.a.createElement("div",{className:"container mx-auto"},c.a.createElement("h1",{className:"text-gray-800 text-2xl"},"About"),c.a.createElement("p",{className:"text-gray-700 text-xl"},"content  ...")))}}}]);
+//# sourceMappingURL=3.8219afd0.chunk.js.map
