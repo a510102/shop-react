@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { cartstReducer, productsReducer, userReducer } from './reducers/reducers';
 import App from './containers/App';
 
@@ -9,7 +10,7 @@ import './tailwind.output.css'
 
 const rootReducer = combineReducers({ cartsState: cartstReducer, productsState: productsReducer, authState: userReducer })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>

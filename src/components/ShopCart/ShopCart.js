@@ -3,6 +3,8 @@ import { useAlert } from 'react-alert';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import CheckOut from '../CheckOut';
+import Loading from '../Loading/Loading';
+import { ButtonLayout } from './ButtonLayout';
 
 export default function ShopCart() {
     const alert = useAlert();
@@ -14,17 +16,20 @@ export default function ShopCart() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchData();
+        dispatch(fetchData());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    async function fetchData() {
-        const Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
-        const response = await fetch(Url);
-        const datas = await response.json();
-        if (datas.success) {
-            dispatch({ type: "UPDATE_CART", cart: datas.data });
-            setLoading(false);
+    function fetchData() {
+        return dispatch => {
+            const Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
+            fetch(Url)
+                .then(res => res.json())
+                .then(data => {
+                    dispatch({ type: "UPDATE_CART", cart: data.data })
+                    setLoading(false)
+                }
+                )
         }
     }
 
@@ -55,11 +60,11 @@ export default function ShopCart() {
     async function handleUpdate(cartId, productId, qtyN) {
         let Url;
         const product = { product_id: productId, qty: qtyN };
+        setLoading(true);
         Url = `https://vue-course-api.hexschool.io/api/jay/cart/${cartId}`;
         let response = await fetch(Url, { method: "DELETE" });
         let result = await response.json();
         if (result.success && qtyN > 0) {
-            console.log('update', product)
             Url = 'https://vue-course-api.hexschool.io/api/jay/cart';
             response = await fetch(Url, {
                 method: 'POST',
@@ -68,47 +73,54 @@ export default function ShopCart() {
             });
             result = await response.json();
             if (result.success) {
-                fetchData();
+                dispatch(fetchData());
+                setLoading(false);
                 alert.show('更新成功');
             } else {
+                setLoading(false);
                 alert.error(result.message);
             }
         } else {
-            fetchData();
+            dispatch(fetchData());
+            setLoading(false);
             alert.success(result.message)
         }
     }
 
     async function handleDeleCart(id) {
         const Url = `https://vue-course-api.hexschool.io/api/jay/cart/${id}`;
+        setLoading(true);
         const response = await fetch(Url, { method: "DELETE" });
         const result = await response.json();
         const { success, message } = result;
         if (success) {
-            fetchData();
+            dispatch(fetchData());
+            setLoading(false);
             alert.success(message);
         } else {
-            fetchData();
+            dispatch(fetchData());
+            setLoading(false);
             alert.error(message);
         }
+    }
+
+    function handleBack() {
+        history.push('/shop-react/shop')
     }
 
     return (
         <div className='my-4 w-full mx-auto p-2 min-h-screen'>
             <h2 className='text-xl p-2 w-full border border-teal-500 text-teal-500 rounded-lg'>您的購物車</h2>
             {
-                !loading && (
+                !loading ? (
                     <div className='w-full text-right'>
                         {
                             !carts.carts.length ? (
-                                <div>
+                                <ButtonLayout handleBack={handleBack} styleName='w-full'>
                                     <h3 className='text-4xl my-4 text-center'>nothings</h3>
-                                    <button
-                                        className='bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-lg'
-                                        onClick={() => { history.push('/shop-react/shop') }}>返回</button>
-                                </div>
+                                </ButtonLayout>
                             ) : (
-                                    <div className='w-full  grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4'>
+                                    <ButtonLayout styleName='w-full  grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4' handleBack={handleBack}>
                                         <ul className='w-full'>
                                             <li className='p-2 flex border-b-2 items-center justify-around border-gray-600'>
                                                 <p>名字</p>
@@ -126,11 +138,11 @@ export default function ShopCart() {
                                                         </p>
                                                         <p>
                                                             <span
-                                                                className='bg-blue-400 hover:bg-blue-600 text-white font-bold p-1 rounded-lg mr-1'
-                                                                onClick={() => handleUpdate(cart.id, cart.product_id, cart.qty - 1)}> - </span>
+                                                                className='bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-lg mr-1'
+                                                                onClick={() => handleUpdate(cart.id, cart.product_id, cart.qty - 1)}>-</span>
                                                             <span>{cart.qty}</span>
                                                             <span
-                                                                className='bg-blue-400 hover:bg-blue-600 text-white font-bold p-1  rounded-lg mx-1'
+                                                                className='bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2  rounded-lg mx-1'
                                                                 onClick={() => handleUpdate(cart.id, cart.product_id, cart.qty + 1)}>+</span>
                                                             <span>{cart.product.unit}</span>
                                                         </p>
@@ -145,7 +157,7 @@ export default function ShopCart() {
                                         </ul>
                                         <div className='w-full'>
                                             <p className='p-2'>共 {carts.carts.length} 件，總共: {carts.final_total} 元</p>
-                                            <div className='p-2'>
+                                            <div className='w-full'>
                                                 <input className='p-2 text-indigo-400 border border-teal-400 rounded-md' onChange={handleChange}
                                                     placeholder='輸入優惠卷代碼'
                                                     value={coupon || ''} />
@@ -155,18 +167,15 @@ export default function ShopCart() {
                                             </div>
                                             {
                                                 open ? <CheckOut /> : <button
-                                                    className='mr-2 mt-2 bg-teal-400 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-lg'
+                                                    className='mt-2 bg-teal-400 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-lg'
                                                     onClick={handleCheckOut}>前往結帳</button>
                                             }
-                                            <button
-                                                className='bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-lg'
-                                                onClick={() => { history.push('/shop-react/shop') }}>返回</button>
                                         </div>
-                                    </div>
+                                    </ButtonLayout>
                                 )
                         }
                     </div>
-                )
+                ) : <Loading />
             }
         </div >
     )

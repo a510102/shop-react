@@ -15,7 +15,7 @@ import './App.css';
 export default function App() {
   const options = {
     position: 'top center',
-    timeout: 3000,
+    timeout: 1000,
     offset: '30px',
     transition: 'fade'
   }
@@ -27,8 +27,8 @@ export default function App() {
         <AlertProvider template={AlertTemplate} {...options}>
           <Router />
         </AlertProvider>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   );
 }
