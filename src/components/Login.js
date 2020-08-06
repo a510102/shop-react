@@ -10,8 +10,8 @@ export default function Login() {
   const history = useHistory();
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { username } = useInputValue('');
-  const { password } = useInputValue('');
+  const { ...username } = useInputValue('');
+  const { ...password } = useInputValue('');
 
   const [loading, setLoading] = useState(false);
 
